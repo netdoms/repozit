@@ -1,3 +1,6 @@
+# Лабораторная работа N1
+
+# Базовая конфигурация устройств 
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_2/1.jpg "")
 
