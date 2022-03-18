@@ -328,7 +328,6 @@ Received 956 broadcasts, 0 runts, 0 giants, 0 throttles
 
 Switch#show flash
 
-
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 Directory of flash:/
@@ -395,6 +394,7 @@ S1(config-line)#password cisco
 S1(config-line)#login
 
 = Настройте каналы виртуального соединения =
+
 S1(config-if)#line vty 0 4
 
 S1(config-line)#transport input all
