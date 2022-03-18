@@ -346,9 +346,13 @@
 
 > Unauthorized access is strictly prohibited. #
 
-> S1(config-if)# no shutdown
+=Назначаем IP для  VLAN 1=
 
-> S1(config-if)#
+> S1(config)#interface vlan1
+
+> S1(config-if)#ip address 192.168.1.2 255.255.255.0
+
+> S1(config-if)# no shutdown
 
     %LINK-5-CHANGED: Interface Vlan1, changed state to up
 
@@ -356,12 +360,7 @@
 
     %IP-4-DUPADDR: Duplicate address 192.168.1.2 on Vlan1, sourced by 0005.5EE7.BBD9
 
-
-=Назначаем IP для  VLAN 1=
-
-> S1(config)#interface vlan1
-
-> S1(config-if)#ip address 192.168.1.2 255.255.255.0
+> S1(config-if)# end
 
 = Пароль на консоль =
 
