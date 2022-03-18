@@ -380,7 +380,7 @@
 
 ### Настройте IP-адрес на компьютере PC-A.
 
-# КАРТИНКА
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_2/2.jpg "")
 
 ### Часть 3. Проверка сетевых подключений
 
