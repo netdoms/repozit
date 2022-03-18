@@ -267,7 +267,6 @@ Received 0 broadcasts (0 IP multicast)
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-
 Switch#show interface f0/6
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -351,6 +350,7 @@ Switch#conf t
 &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
 Enter configuration commands, one per line.  End with CNTL/Z.
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 Switch(config)#no ip domain-lookup
@@ -366,12 +366,17 @@ Enter TEXT message.  End with the character '#'.
 Unauthorized access is strictly prohibited. #
 
 S1(config-if)# no shutdown
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 S1(config-if)#
+
 %LINK-5-CHANGED: Interface Vlan1, changed state to up
 
 %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+
 %IP-4-DUPADDR: Duplicate address 192.168.1.2 on Vlan1, sourced by 0005.5EE7.BBD9
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 =Назначаем IP для  VLAN 1=
@@ -379,7 +384,6 @@ S1(config-if)#
 S1(config)#interface vlan1
 
 S1(config-if)#ip address 192.168.1.2 255.255.255.0
-
 
 = Пароль на консоль =
 
@@ -421,7 +425,7 @@ S1#show flash
 
 Directory of flash:/
 
-    1  -rw-     4414921          <no date>  c2960-lanbase-mz.122-25.FX.bin
+1  -rw-     4414921          <no date>  c2960-lanbase-mz.122-25.FX.bin
 
 64016384 bytes total (59601463 bytes free)
 
