@@ -36,13 +36,11 @@
 
 Switch>enable 
 
-
-
 Switch # show running-config
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-Current configuration : 1078 bytes
+     configuration : 1078 bytes
 
 !
 
