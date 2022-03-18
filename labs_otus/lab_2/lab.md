@@ -26,7 +26,7 @@
 
 ## Часть 1. Проверка конфигурации коммутатора по умолчанию
 
-> Подсоедините консольный кабель, как показано в топологии. На данном 
+Подсоедините консольный кабель, как показано в топологии. На данном 
 
 этапе не подключайте кабель Ethernet компьютера PC-A.
 
@@ -34,7 +34,7 @@
 
 переходим в привелигированный режим.
 
-Switch>enable 
+> Switch>enable 
 
 Switch # show running-config
 
@@ -205,7 +205,7 @@ Switch # show running-config
 
     end
 
-Switch#show startup-config
+> Switch#show startup-config
 
 
     startup-config is not present
@@ -255,7 +255,7 @@ Switch#show interface Vlan1
 
     0 output buffer failures, 0 output buffers swapped out
 
-Switch#show interface f0/6
+> Switch#show interface f0/6
 
 
         FastEthernet0/6 is up, line protocol is up (connected)
@@ -324,28 +324,28 @@ Switch#show interface f0/6
 
 = Настраиваем основу =
 
-Switch#clock set 15:05:00 17 Mar 2022
+> Switch#clock set 15:05:00 17 Mar 2022
 
-Switch#conf t
+> Switch#conf t
 
     Enter configuration commands, one per line.  End with CNTL/Z.
 
 
-Switch(config)#no ip domain-lookup
+> Switch(config)#no ip domain-lookup
 
-Switch(config)#hostname S1
+> Switch(config)#hostname S1
 
-S1(config)#service password-encryption
+> S1(config)#service password-encryption
 
-S1(config)#banner motd #
+> S1(config)#banner motd #
 
-Enter TEXT message.  End with the character '#'.
+> Enter TEXT message.  End with the character '#'.
 
-Unauthorized access is strictly prohibited. #
+> Unauthorized access is strictly prohibited. #
 
-S1(config-if)# no shutdown
+> S1(config-if)# no shutdown
 
-S1(config-if)#
+> S1(config-if)#
 
     %LINK-5-CHANGED: Interface Vlan1, changed state to up
 
@@ -356,27 +356,27 @@ S1(config-if)#
 
 =Назначаем IP для  VLAN 1=
 
-S1(config)#interface vlan1
+> S1(config)#interface vlan1
 
-S1(config-if)#ip address 192.168.1.2 255.255.255.0
+> S1(config-if)#ip address 192.168.1.2 255.255.255.0
 
 = Пароль на консоль =
 
-S1(config)#line con 0
+> S1(config)#line con 0
 
-S1(config-line)#logging synchronous
+> S1(config-line)#logging synchronous
 
-S1(config-line)#
+> S1(config-line)#
 
-S1(config-line)#password cisco
+> S1(config-line)#password cisco
 
-S1(config-line)#login
+> S1(config-line)#login
 
 = Настройте каналы виртуального соединения =
 
-S1(config-if)#line vty 0 4
+> S1(config-if)#line vty 0 4
 
-S1(config-line)#transport input all
+> S1(config-line)#transport input all
 
 ### Настройте IP-адрес на компьютере PC-A.
 
@@ -394,7 +394,7 @@ S1(config-line)#transport input all
 
 ### Инициализация и перезагрузка коммутатора
 
-S1(config-line)#end
+> S1(config-line)#end
 
 S1#show flash
 
@@ -404,7 +404,7 @@ S1#show flash
 
     64016384 bytes total (59601463 bytes free)
 
-S1#copy running-config startup-config
+> S1#copy running-config startup-config
 
     Destination filename [startup-config]? 
 
