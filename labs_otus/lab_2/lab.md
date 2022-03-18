@@ -205,15 +205,11 @@ Switch # show running-config
 
     end
 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
 Switch#show startup-config
 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-startup-config is not present
+    startup-config is not present
 
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 =В ОЗУ ничего нет=
 
