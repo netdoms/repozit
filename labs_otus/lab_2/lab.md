@@ -36,7 +36,7 @@
 
 > Switch>enable 
 
-Switch # show running-config
+> Switch # show running-config
 
      configuration : 1078 bytes
 
@@ -213,7 +213,7 @@ Switch # show running-config
 
 =В ОЗУ ничего нет=
 
-Switch#show interface Vlan1
+> Switch#show interface Vlan1
 
     Vlan1 is administratively down, line protocol is down
 
@@ -310,7 +310,7 @@ Switch#show interface Vlan1
 
         0 output buffer failures, 0 output buffers swapped out
 
-    Switch#show flash
+> Switch#show flash
 
         Directory of flash:/
             
@@ -339,7 +339,7 @@ Switch#show interface Vlan1
 
 > S1(config)#banner motd #
 
-> Enter TEXT message.  End with the character '#'.
+    Enter TEXT message.  End with the character '#'.
 
 > Unauthorized access is strictly prohibited. #
 
