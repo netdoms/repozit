@@ -355,8 +355,6 @@
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
 
-    %IP-4-DUPADDR: Duplicate address 192.168.1.2 on Vlan1, sourced by 0005.5EE7.BBD9
-
 > S1(config-if)# end
 
 

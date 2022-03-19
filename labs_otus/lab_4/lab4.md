@@ -56,6 +56,23 @@
 
 Настройте базовые параметры каждого коммутатора.
 
+> Switch>enable
 
+> Switch#conf t
+
+    Enter configuration commands, one per line.  End with CNTL/Z.
+> Switch(config)#hostname S1
+
+> S1#conf t
+
+> S1(config)#interface vlan1
+
+> S1(config-if)#ip address 192.168.1.11 255.255.255.0
+
+> S1(config-if)#no shutdown
+
+    %LINK-5-CHANGED: Interface Vlan1, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
 
 
