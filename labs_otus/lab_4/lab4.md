@@ -38,3 +38,21 @@
         1  -rw-     4414921          <no date>  c2960-lanbase-mz.122-25.FX.bin
 
     64016384 bytes total (59601463 bytes free)
+
+> Switch#erase startup-config
+
+    Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]
+    [OK]
+    Erase of nvram: complete
+    %SYS-7-NV_BLOCK_INIT: Initialized the geometry of nvram
+
+> Switch#reload
+
+% Please answer 'yes' or 'no'.
+
+> System configuration has been modified. Save? [yes/no]: no
+ 
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_4/4.jpg "")
+
+
+
