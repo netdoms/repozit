@@ -21,6 +21,8 @@
 
 # Часть 1 Создание и настройка сети
 
-Настроем узлы ПК 
+Настроем узлы ПК PC-A и PC-B
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_4/2.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_4/3.jpg "")
