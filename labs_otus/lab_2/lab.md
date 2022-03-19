@@ -412,7 +412,7 @@ S1#show flash
 =Финальный конфиг=
 
     !
-    
+
     version 12.2
 
     no service timestamps log datetime msec
@@ -555,9 +555,9 @@ S1#show flash
 
     ip address 192.168.1.2 255.255.255.0
     
-    banner motd 
+    banner motd
 
-    Unauthorized access is strictly prohibited. 
+    Unauthorized access is strictly prohibited.
 
     !
 
