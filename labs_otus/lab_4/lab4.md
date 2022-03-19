@@ -54,5 +54,8 @@
  
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_4/4.jpg "")
 
+Настройте базовые параметры каждого коммутатора.
+
+
 
 
