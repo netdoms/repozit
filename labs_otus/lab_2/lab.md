@@ -359,13 +359,13 @@
 
 > S1(config-if)# end
 
+
+
 = Пароль на консоль =
 
 > S1(config)#line con 0
 
 > S1(config-line)#logging synchronous
-
-> S1(config-line)#
 
 > S1(config-line)#password cisco
 
@@ -387,7 +387,7 @@
 
 ### Проверьте удаленное управление коммутатором S1
 
-# КАРТИНКА
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_2/5.jpg "")
 
 ### Инициализация и перезагрузка коммутатора
 
