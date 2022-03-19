@@ -26,3 +26,15 @@
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_4/2.jpg "")
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_4/3.jpg "")
+
+* Выполните инициализацию и перезагрузку коммутаторов
+
+> Switch>enable
+
+> Switch#show flash
+
+    Directory of flash:/
+
+        1  -rw-     4414921          <no date>  c2960-lanbase-mz.122-25.FX.bin
+
+    64016384 bytes total (59601463 bytes free)
