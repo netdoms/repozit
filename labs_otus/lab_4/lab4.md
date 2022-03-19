@@ -2,7 +2,7 @@
 
 # Канальный уровень. Ethernet
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_2/1.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_4/1.jpg "")
 
 **Таблица адресации**
 
@@ -23,4 +23,4 @@
 
 Настройте узлы ПК
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_2/2.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_4/2.jpg "")
