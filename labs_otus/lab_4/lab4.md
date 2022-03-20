@@ -231,3 +231,136 @@ FastEthernet0/1 is up, line protocol is up (connected)
     ----    -----------       --------    -----
 
     1    0002.1671.2701    DYNAMIC     Fa0/1
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_4/5.jpg "")
+
+> S2#show mac address-table
+
+            Mac Address Table
+    -------------------------------------------
+
+    Vlan    Mac Address       Type        Ports
+    ----    -----------       --------    -----
+
+    1    0002.1671.2701    DYNAMIC     Fa0/1
+    1    0060.70e7.6ea1    DYNAMIC     Fa0/1
+    1    00d0.bc28.37e9    DYNAMIC     Fa0/18
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_4/6.jpg "")
+
+> S2#show mac address-table
+
+            Mac Address Table
+    -------------------------------------------
+
+    Vlan    Mac Address       Type        Ports
+    ----    -----------       --------    -----
+
+    1    0002.1671.2701    DYNAMIC     Fa0/1
+    1    0060.70e7.6ea1    DYNAMIC     Fa0/1
+    1    00d0.bc28.37e9    DYNAMIC     Fa0/18
+
+> S2#ping 192.168.1.11
+
+    Type escape sequence to abort.
+    Sending 5, 100-byte ICMP Echos to 192.168.1.11, timeout is 2 seconds:
+    ..!!!
+    Success rate is 60 percent (3/5), round-trip min/avg/max = 0/1/3 ms
+
+> S2#show mac address-table
+
+            Mac Address Table
+    -------------------------------------------
+
+    Vlan    Mac Address       Type        Ports
+    ----    -----------       --------    -----
+
+    1    0002.1671.2701    DYNAMIC     Fa0/1
+    1    0003.e4aa.6d2a    DYNAMIC     Fa0/1
+    1    0060.70e7.6ea1    DYNAMIC     Fa0/1
+    1    00d0.bc28.37e9    DYNAMIC     Fa0/18
+
+### Шаг 3. Очистите таблицу МАС-адресов коммутатора S2 и снова отобразите таблицу МАС-адресов
+
+Через 10 секунд введите команду show mac address-table и нажмите клавишу ввода. Появились ли в таблице МАС-адресов новые адреса?
+> НЕТ
+
+> S2    S2# clear mac address-table dynamic
+
+S2#show mac address-table
+
+
+            Mac Address Table
+    -------------------------------------------
+
+    Vlan    Mac Address       Type        Ports
+    ----    -----------       --------    -----
+
+    1    0002.1671.2701    DYNAMIC     Fa0/1
+
+    В таблице находится только mac S1 интерфейса Fast Ethernet 0/1
+
+### Шаг 4. С компьютера PC-B отправьте эхо-запросы устройствам в сети и просмотрите таблицу МАС-адресов коммутатора.
+
+    Packet Tracer PC Command Line 1.0
+    C:\>ping 192.168.1.1
+
+    Pinging 192.168.1.1 with 32 bytes of data:
+
+    Reply from 192.168.1.1: bytes=32 time=1ms TTL=128
+    Reply from 192.168.1.1: bytes=32 time<1ms TTL=128
+    Reply from 192.168.1.1: bytes=32 time=10ms TTL=128
+    Reply from 192.168.1.1: bytes=32 time=4ms TTL=128
+
+    Ping statistics for 192.168.1.1:
+        Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+    Approximate round trip times in milli-seconds:
+        Minimum = 0ms, Maximum = 10ms, Average = 3ms
+
+    C:\>arp -a
+    Internet Address      Physical Address      Type
+    192.168.1.1           0060.70e7.6ea1        dynamic
+
+    C:\>ping 192.168.1.11
+
+    Pinging 192.168.1.11 with 32 bytes of data:
+
+    Request timed out.
+    Reply from 192.168.1.11: bytes=32 time=3ms TTL=255
+    Reply from 192.168.1.11: bytes=32 time=3ms TTL=255
+    Reply from 192.168.1.11: bytes=32 time=3ms TTL=255
+
+    Ping statistics for 192.168.1.11:
+        Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+    Approximate round trip times in milli-seconds:
+        Minimum = 3ms, Maximum = 3ms, Average = 3ms
+
+    C:\>arp -a
+    Internet Address      Physical Address      Type
+    192.168.1.1           0060.70e7.6ea1        dynamic
+    192.168.1.11          0003.e4aa.6d2a        dynamic
+
+    C:\>ping 192.168.1.12
+
+    Pinging 192.168.1.12 with 32 bytes of data:
+
+    Request timed out.
+    Reply from 192.168.1.12: bytes=32 time<1ms TTL=255
+    Reply from 192.168.1.12: bytes=32 time<1ms TTL=255
+    Reply from 192.168.1.12: bytes=32 time<1ms TTL=255
+
+    Ping statistics for 192.168.1.12:
+        Packets: Sent = 4, Received = 3, Lost = 1 (25% loss),
+    Approximate round trip times in milli-seconds:
+        Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
+    C:\>arp -a
+    Internet Address      Physical Address      Type
+    192.168.1.1           0060.70e7.6ea1        dynamic
+    192.168.1.11          0003.e4aa.6d2a        dynamic
+    192.168.1.12          0090.21e0.e191        dynamic
+
+
+
+
+
