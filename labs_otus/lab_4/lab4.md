@@ -54,7 +54,7 @@
  
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_4/4.jpg "")
 
-Настройте базовые параметры каждого коммутатора.
+Настройте базовые параметры коммутатора S1.
 
 > Switch>enable
 
@@ -92,3 +92,55 @@
 > S1(config-line)#password cisco
 
 > S1(config-line)#login
+
+> S1(config-if)#exit
+
+> S1(config)#enable secret class
+
+> S1(config)# service password-encryption
+
+Настройте базовые параметры коммутатора S2.
+
+> Switch>enable
+
+> Switch#conf t
+
+    Enter configuration commands, one per line.  End with CNTL/Z.
+> Switch(config)#hostname S2
+
+> S2#conf t
+
+> S2(config)#interface vlan1
+
+> S2(config-if)#ip address 192.168.1.12 255.255.255.0
+
+> S2(config-if)#no shutdown
+
+    %LINK-5-CHANGED: Interface Vlan1, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+
+> S2(config-if)#exit
+
+> S2(config)#line con 0
+
+> S2(config-line)#loggin synchronous 
+
+> S2(config-line)#password cisco
+
+> S2(config-line)#login
+
+> S2(config-line)#line vty 0 4
+
+> S2(config-line)#transport input all
+
+> S2(config-line)#password cisco
+
+> S2(config-line)#login
+
+> S2(config-if)#exit
+
+> S2(config)#enable secret class
+
+> S2(config)# service password-encryption
+
