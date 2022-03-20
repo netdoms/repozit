@@ -203,18 +203,18 @@ FastEthernet0 Connection:(default port)
 S2
 > #show interface f0/1
 
-FastEthernet0/1 is up, line protocol is up (connected)
-  Hardware is Lance, address is 0001.4281.e201 (bia 0001.4281.e201)
- BW 100000 Kbit, DLY 1000 usec,
-     reliability 255/255, txload 1/255, rxload 1/255
-  Encapsulation ARPA, loopback not set
-  Keepalive set (10 sec)
-  Full-duplex, 100Mb/s
-  input flow-control is off, output flow-control is off
-  ARP type: ARPA, ARP Timeout 04:00:00
-  Last input 00:00:08, output 00:00:05, output hang never
-  Last clearing of "show interface" counters never
-  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+    FastEthernet0/1 is up, line protocol is up (connected)
+    Hardware is Lance, address is 0001.4281.e201 (bia 0001.4281.e201)
+    BW 100000 Kbit, DLY 1000 usec,
+        reliability 255/255, txload 1/255, rxload 1/255
+    Encapsulation ARPA, loopback not set
+    Keepalive set (10 sec)
+    Full-duplex, 100Mb/s
+    input flow-control is off, output flow-control is off
+    ARP type: ARPA, ARP Timeout 04:00:00
+    Last input 00:00:08, output 00:00:05, output hang never
+    Last clearing of "show interface" counters never
+    Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
 
 МАС-адрес коммутатора S1 Fast Ethernet 0/1: 0002.1671.2701
 МАС-адрес коммутатора S2 Fast Ethernet 0/1: 0001.4281.e201
