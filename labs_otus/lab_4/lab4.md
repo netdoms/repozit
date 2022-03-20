@@ -286,9 +286,9 @@ S2
 Через 10 секунд введите команду show mac address-table и нажмите клавишу ввода. Появились ли в таблице МАС-адресов новые адреса?
 > НЕТ
 
-> S2    S2# clear mac address-table dynamic
+>S2#clear mac address-table dynamic
 
-S2#show mac address-table
+>S2#show mac address-table
 
 
             Mac Address Table
@@ -302,8 +302,6 @@ S2#show mac address-table
     В таблице находится только mac S1 интерфейса Fast Ethernet 0/1
 
 ### Шаг 4. С компьютера PC-B отправьте эхо-запросы устройствам в сети и просмотрите таблицу МАС-адресов коммутатора.
-
-
 
     Packet Tracer PC Command Line 1.0
     C:\>ping 192.168.1.1
