@@ -217,6 +217,7 @@ S2
     Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
 
 МАС-адрес коммутатора S1 Fast Ethernet 0/1: 0002.1671.2701
+
 МАС-адрес коммутатора S2 Fast Ethernet 0/1: 0001.4281.e201
 
 ### Шаг 2. Просмотрите таблицу МАС-адресов коммутатора.
@@ -371,6 +372,7 @@ C:\>ping 192.168.1.2
         Minimum = 2ms, Maximum = 5ms, Average = 3ms
 
 C:\>arp -a
+
         Internet Address      Physical Address      Type
         192.168.1.1           0060.70e7.6ea1        dynamic
         192.168.1.11          0003.e4aa.6d2a        dynamic
