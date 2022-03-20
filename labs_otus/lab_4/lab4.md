@@ -356,7 +356,7 @@ S2#show mac address-table
     Approximate round trip times in milli-seconds:
         Minimum = 0ms, Maximum = 0ms, Average = 0ms
 
-> C:\>ping 192.168.1.2
+C:\>ping 192.168.1.2
 
     Pinging 192.168.1.2 with 32 bytes of data:
 
@@ -370,7 +370,7 @@ S2#show mac address-table
     Approximate round trip times in milli-seconds:
         Minimum = 2ms, Maximum = 5ms, Average = 3ms
 
-> C:\>arp -a
+C:\>arp -a
         Internet Address      Physical Address      Type
         192.168.1.1           0060.70e7.6ea1        dynamic
         192.168.1.11          0003.e4aa.6d2a        dynamic
