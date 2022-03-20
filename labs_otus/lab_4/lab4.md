@@ -144,3 +144,90 @@
 
 > S2(config)# service password-encryption
 
+# Часть 2. Изучение таблицы МАС-адресов коммутатора
+
+Шаг 1. Запишите МАС-адреса сетевых устройств
+
+PC A
+
+Packet Tracer PC Command Line 1.0
+
+C:\>ipconfig /all
+
+    FastEthernet0 Connection:(default port)
+
+    Connection-specific DNS Suffix..: 
+    Physical Address................: 0060.70E7.6EA1
+    Link-local IPv6 Address.........: FE80::260:70FF:FEE7:6EA1
+    IP Address......................: 192.168.1.1
+    Subnet Mask.....................: 255.255.255.0
+    Default Gateway.................: 0.0.0.0
+    DNS Servers.....................: 0.0.0.0
+    DHCP Servers....................: 0.0.0.0
+    DHCPv6 Client DUID..............: 00-01-00-01-5D-DE-D0-45-00-60-70-E7-6E-A1
+
+PC B
+
+Packet Tracer PC Command Line 1.0
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 00D0.BC28.37E9
+   Link-local IPv6 Address.........: FE80::2D0:BCFF:FE28:37E9
+   IP Address......................: 192.168.1.2
+   Subnet Mask.....................: 255.255.255.0
+   Default Gateway.................: 0.0.0.0
+   DNS Servers.....................: 0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 Client DUID..............: 00-01-00-01-E7-E8-5C-BE-00-D0-BC-28-37-E9
+
+> S1#show interface F0/1
+
+    FastEthernet0/1 is up, line protocol is up (connected)
+    Hardware is Lance, address is 0002.1671.2701 (bia 0002.1671.2701)
+    BW 100000 Kbit, DLY 1000 usec,
+        reliability 255/255, txload 1/255, rxload 1/255
+    Encapsulation ARPA, loopback not set
+    Keepalive set (10 sec)
+    Full-duplex, 100Mb/s
+    input flow-control is off, output flow-control is off
+    ARP type: ARPA, ARP Timeout 04:00:00
+    Last input 00:00:08, output 00:00:05, output hang never
+    Last clearing of "show interface" counters never
+    Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+
+
+
+S2
+> #show interface f0/1
+
+FastEthernet0/1 is up, line protocol is up (connected)
+  Hardware is Lance, address is 0001.4281.e201 (bia 0001.4281.e201)
+ BW 100000 Kbit, DLY 1000 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full-duplex, 100Mb/s
+  input flow-control is off, output flow-control is off
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:08, output 00:00:05, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+
+МАС-адрес коммутатора S1 Fast Ethernet 0/1: 0002.1671.2701
+МАС-адрес коммутатора S2 Fast Ethernet 0/1: 0001.4281.e201
+
+### Шаг 2. Просмотрите таблицу МАС-адресов коммутатора.
+
+> S2#show mac address-table
+
+
+            Mac Address Table
+    -------------------------------------------
+
+    Vlan    Mac Address       Type        Ports
+    ----    -----------       --------    -----
+
+    1    0002.1671.2701    DYNAMIC     Fa0/1
