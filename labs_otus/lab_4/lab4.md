@@ -371,10 +371,10 @@ S2#show mac address-table
         Minimum = 2ms, Maximum = 5ms, Average = 3ms
 
 > C:\>arp -a
-    Internet Address      Physical Address      Type
-    192.168.1.1           0060.70e7.6ea1        dynamic
-    192.168.1.11          0003.e4aa.6d2a        dynamic
-    192.168.1.12          0090.21e0.e191        dynamic
+        Internet Address      Physical Address      Type
+        192.168.1.1           0060.70e7.6ea1        dynamic
+        192.168.1.11          0003.e4aa.6d2a        dynamic
+        192.168.1.12          0090.21e0.e191        dynamic
 
 Появились ли в ARP-кэше компьютера PC-B дополнительные записи для всех сетевых устройств, которым были отправлены эхо-запросы?
 
