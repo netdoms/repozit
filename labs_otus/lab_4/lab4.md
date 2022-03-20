@@ -75,4 +75,20 @@
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
 
+> S1(config-if)#exit
 
+> S1(config)#line con 0
+
+> S1(config-line)#loggin synchronous 
+
+> S1(config-line)#password cisco
+
+> S1(config-line)#login
+
+> S1(config-line)#line vty 0 4
+
+> S1(config-line)#transport input all
+
+> S1(config-line)#password cisco
+
+> S1(config-line)#login

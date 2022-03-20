@@ -335,6 +335,8 @@
 
 > Switch(config)#hostname S1
 
+> Switch(config)#enable secret class
+
 > S1(config)#service password-encryption
 
 > S1(config)#banner motd #
