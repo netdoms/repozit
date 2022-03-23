@@ -3,7 +3,7 @@
 
 **Топология**
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_2/1.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/1.jpg "")
 
 **Таблица адресации**
 
