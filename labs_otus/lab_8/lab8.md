@@ -44,33 +44,33 @@
 
 > Router(config)#hostname S1
 
-> S1(config)# enable secret cisco
+> R1(config)# enable secret cisco
 
-> S1(config)#line console 0
+> R1(config)#line console 0
 
-> S1(config-line)#password class
+> R1(config-line)#password class
 
-> S1(config-line)#exit
+> R1(config-line)#exit
 
-> S1(config)#service password-encryption
+> R1(config)#service password-encryption
 
-> S1(config)#banner motd #
+> R1(config)#banner motd #
 
     Enter TEXT message.  End with the character '#'.
 
 Unauthorized access is strictly prohibited. #
 
-> S1(config)#line vty 0 4
+> R1(config)#line vty 0 4
 
-> S1(config-line)#password cisco
+> R1(config-line)#password cisco
 
-> S1(config-line)#login
+> R1(config-line)#login
 
-> S1(config-line)#transport input all
+> R1(config-line)#transport input all
 
-> S1(config-line)#exit
+> R1(config-line)#exit
 
-> S1(config)#copy running-config startup-config
+> R1(config)#copy running-config startup-config
 
     Destination filename [startup-config]? 
     Building configuration...
@@ -138,33 +138,47 @@ Unauthorized access is strictly prohibited. #
 **Ручная настройка IPv6-адресов**
 
 ***Назначьте IPv6-адреса интерфейсам Ethernet на R1***
+> R1(config)# interface gigabitethernet 0/0/0
+
+> R1(config-if)# ipv6 address 2001:db8:acad:a::1/64
+
+> R1(config-if)#no shutdown
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to up
+
+> R1(config-if)#exit
+
+> R1(config)# interface gigabitethernet 0/0/1
+
+> R1(config-if)#ipv6 address 2001:db8:acad:1::1/64
+
+> R1(config-if)#no shutdown
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
+
 
 
 
 ***Активируйте IPv6-маршрутизацию на R1***
 
 ***Назначьте IPv6-адреса интерфейсу управления (SVI) на S1***
-> S1(config)# interface gigabitethernet 0/0/0
 
-> S1(config-if)# ipv6 address 2001:db8:acad:a::1/64
+> S1#conf t
 
-> S1(config-if)#no shutdown
+> S1(config)#interface vlan 1
 
-    %LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to up
-
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to up
-
-> S1(config-if)#exit
-
-> S1(config)# interface gigabitethernet 0/0/1
-
-> S1(config-if)#ipv6 address 2001:db8:acad:1::1/64
+> S1(config-if)#ipv6 address 2001:db8:acad:1::b/64
 
 > S1(config-if)#no shutdown
 
-    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
+    %LINK-5-CHANGED: Interface Vlan1, changed state to up
 
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+
 
 
 ***Назначьте компьютерам статические IPv6-адреса***
