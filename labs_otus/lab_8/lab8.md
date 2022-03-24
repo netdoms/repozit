@@ -38,11 +38,43 @@
 
 **Настройте маршрутизатор**
 
-Router>enable 
+> Router>enable 
 
-Router#configure terminal
+> Router#configure terminal
 
+> Router(config)#hostname S1
 
+> S1(config)# enable secret cisco
+
+> S1(config)#line console 0
+
+> S1(config-line)#password class
+
+> S1(config-line)#exit
+
+> S1(config)#service password-encryption
+
+> S1(config)#banner motd #
+
+    Enter TEXT message.  End with the character '#'.
+
+Unauthorized access is strictly prohibited. #
+
+> S1(config)#line vty 0 4
+
+> S1(config-line)#password cisco
+
+> S1(config-line)#login
+
+> S1(config-line)#transport input all
+
+> S1(config-line)#exit
+
+> S1(config)#copy running-config startup-config
+
+    Destination filename [startup-config]? 
+    Building configuration...
+    [OK]
 
 **Настройте коммутатор**
 
@@ -98,6 +130,8 @@ Router#configure terminal
         [OK]
 
 > S1#reload
+
+
 
 
 
