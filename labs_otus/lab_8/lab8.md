@@ -139,12 +139,32 @@ Unauthorized access is strictly prohibited. #
 
 ***Назначьте IPv6-адреса интерфейсам Ethernet на R1***
 
+
+
 ***Активируйте IPv6-маршрутизацию на R1***
 
 ***Назначьте IPv6-адреса интерфейсу управления (SVI) на S1***
+> S1(config)# interface gigabitethernet 0/0/0
 
+> S1(config-if)# ipv6 address 2001:db8:acad:a::1/64
 
+> S1(config-if)#no shutdown
 
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to up
+
+> S1(config-if)#exit
+
+> S1(config)# interface gigabitethernet 0/0/1
+
+> S1(config-if)#ipv6 address 2001:db8:acad:1::1/64
+
+> S1(config-if)#no shutdown
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
 
 
 ***Назначьте компьютерам статические IPv6-адреса***
