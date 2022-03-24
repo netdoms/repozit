@@ -115,6 +115,16 @@ Unauthorized access is strictly prohibited. #
 
 > Unauthorized access is strictly prohibited. #
 
+> S1(config)#line vty 0 4
+
+> S1(config-line)#password cisco
+
+> S1(config-line)#login
+
+> S1(config-line)#transport input all
+
+> S1(config-line)#exit
+
 > S1(config)#sdm prefer dual-ipv4-and-ipv6 default 
 
     Changes to the running SDM preferences have been stored, but cannot take effect until the next reload.
@@ -130,9 +140,6 @@ Unauthorized access is strictly prohibited. #
         [OK]
 
 > S1#reload
-
-
-
 
 
 **Ручная настройка IPv6-адресов**
