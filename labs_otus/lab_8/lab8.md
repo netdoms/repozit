@@ -172,6 +172,10 @@ Unauthorized access is strictly prohibited. #
 
 ***Активируйте IPv6-маршрутизацию на R1***
 
+> R1(config-if)#exit
+
+> R1(config)#ipv6 unicast-routing
+
 ***Назначьте IPv6-адреса интерфейсу управления (SVI) на S1***
 
 > S1#conf t
