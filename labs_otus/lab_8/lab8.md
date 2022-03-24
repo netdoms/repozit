@@ -31,9 +31,75 @@
 
 **Настройка топологии и конфигурация основных параметров маршрутизатора и коммутатора**
 
+
+
+
+
+
 **Настройте маршрутизатор**
 
+Router>enable 
+
+Router#configure terminal
+
+
+
 **Настройте коммутатор**
+
+> Switch>enable
+
+> Switch#show sdm prefer
+
+    The current template is "default" template.
+    The selected template optimizes the resources in
+    the switch to support this level of features for
+    0 routed interfaces and 1024 VLANs.
+
+    number of unicast mac addresses:                  8K
+    number of IPv4 IGMP groups + multicast routes:    0.25K
+    number of IPv4 unicast routes:                    0
+    number of IPv6 multicast groups:                  0
+    number of directly-connected IPv6 addresses:      0
+    number of indirect IPv6 unicast routes:           0
+    number of IPv4 policy based routing aces:         0
+    number of IPv4/MAC qos aces:                      0.125k
+    number of IPv4/MAC security aces:                 0.375k
+    number of IPv6 policy based routing aces:         0
+    number of IPv6 qos aces:                          20
+    number of IPv6 security aces:                     25
+
+
+> Switch#configure terminal
+
+> Switch(config)#hostname S1
+
+> S1(config)#enable secret class
+
+> S1(config)#service password-encryption
+
+> S1(config)#banner motd #
+
+    Enter TEXT message.  End with the character '#'.
+
+> Unauthorized access is strictly prohibited. #
+
+> S1(config)#sdm prefer dual-ipv4-and-ipv6 default 
+
+    Changes to the running SDM preferences have been stored, but cannot take effect until the next reload.
+    Use 'show sdm prefer' to see what SDM preference is currently active.
+    Switch(config)#end
+
+> S1#copy running-config startup-config
+
+    Destination filename [startup-config]? 
+
+        Building configuration...
+
+        [OK]
+
+> S1#reload
+
+
 
 **Ручная настройка IPv6-адресов**
 
@@ -43,7 +109,13 @@
 
 ***Назначьте IPv6-адреса интерфейсу управления (SVI) на S1***
 
+
+
+
+
 ***Назначьте компьютерам статические IPv6-адреса***
+
+
 
 **Проверка сквозного подключения**
 
