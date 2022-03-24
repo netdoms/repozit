@@ -148,6 +148,11 @@ Unauthorized access is strictly prohibited. #
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to up
 
+
+> R1(config-if)#ipv6 address fe80::1:1 link-local
+
+> R1(config-if)#no shutdown
+
 > R1(config-if)#exit
 
 > R1(config)# interface gigabitethernet 0/0/1
@@ -160,7 +165,9 @@ Unauthorized access is strictly prohibited. #
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
 
+> R1(config-if)#ipv6 address fe80::1:1 link-local
 
+> R1(config-if)#no shutdown
 
 
 ***Активируйте IPv6-маршрутизацию на R1***
