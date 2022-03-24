@@ -183,6 +183,7 @@ Unauthorized access is strictly prohibited. #
 Вопрос:
 Почему PC-B получил глобальный префикс маршрутизации и идентификатор подсети, которые вы настроили на R1?
 
+Функция SLAAC 
 
 ***Назначьте IPv6-адреса интерфейсу управления (SVI) на S1***
 
@@ -198,16 +199,66 @@ Unauthorized access is strictly prohibited. #
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
 
+> S1(config-if)#no shutdown
+
+> S1(config-if)#end
+
+> S1#show ipv6 interface vlan 1
+
+    Vlan1 is up, line protocol is up
+    IPv6 is enabled, link-local address is FE80::20B:BEFF:FE8A:4393
+    No Virtual link-local address(es):
+    Global unicast address(es):
+        2001:DB8:ACAD:1::B, subnet is 2001:DB8:ACAD:1::/64
+    Joined group address(es):
+        FF02::1
+        FF02::1:FF00:B
+        FF02::1:FF8A:4393
+    MTU is 1500 bytes
+    ICMP error messages limited to one every 100 milliseconds
+    ICMP redirects are enabled
+    ICMP unreachables are sent
+    Output features: Check hwidb
+    ND DAD is enabled, number of DAD attempts: 1
+    ND reachable time is 30000 milliseconds
 
 
 ***Назначьте компьютерам статические IPv6-адреса***
 
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/3.jpg "")
 
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/4.jpg "")
 
 **Проверка сквозного подключения**
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/5.jpg "")
+
+
+> C:\ >tracert
+    Cisco Packet Tracer PC Tracert
+
+    Usage: tracert target
+
+    C:\>tracert 2001:db8:acad:a::3
+
+    Tracing route to 2001:db8:acad:a::3 over a maximum of 30 hops: 
+
+    1   0 ms      1 ms      1 ms      2001:DB8:ACAD:1::1
+    2   1 ms      0 ms      0 ms      2001:DB8:ACAD:A::3
+
+    Trace complete.
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/6.jpg "")
+
 
 **Вопросы для повторения**
 
 *Почему обоим интерфейсам Ethernet на R1 можно назначить один и тот же локальный адрес канала — FE80::1?*
 
+Каждый интерфейс маршрутизатора относится к отдельной сети. Пакеты с локальным адресом канала никогда не выходят за пределы локальной сети, а значит, для обоих интерфейсов можно указывать один и тот же локальный адрес канала.
+
 *Какой идентификатор подсети в индивидуальном IPv6-адресе 2001:db8:acad::aaaa:1234/64?*
+
+    IP address	2001:db8:acad::aaaa:1234/64
+    type	GLOBAL-UNICAST (reserved for documentation purpose (2001:db8::/32)
+    [rfc3849][IANA])
+    network	2001:db8:acad::
