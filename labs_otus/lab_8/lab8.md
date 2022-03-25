@@ -76,6 +76,8 @@ Unauthorized access is strictly prohibited. #
     Building configuration...
     [OK]
 
+> R1#reload
+
 **Настройте коммутатор**
 
 > Switch>enable
