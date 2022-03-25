@@ -76,6 +76,8 @@ Unauthorized access is strictly prohibited. #
     Building configuration...
     [OK]
 
+> R1#reload
+
 **Настройте коммутатор**
 
 > Switch>enable
@@ -147,7 +149,7 @@ Unauthorized access is strictly prohibited. #
 ***Назначьте IPv6-адреса интерфейсам Ethernet на R1***
 > R1(config)# interface gigabitethernet 0/0/0
 
-> R1(config-if)# ipv6 address 2001:db8:acad:a::1/64
+> R1(config-if)# ipv6 address 2001:db8:acad: a::1/64
 
 > R1(config-if)#no shutdown
 
@@ -183,7 +185,8 @@ Unauthorized access is strictly prohibited. #
 
 > R1(config)#ipv6 unicast-routing
 
-	Теперь, когда R1 входит в группу многоадресной рассылки всех маршрутизаторов, еще раз введите команду ipconfig на PC-B. Проверьте данные IPv6-адреса.
+	Теперь, когда R1 входит в группу многоадресной рассылки всех маршрутизаторов,
+     еще раз введите команду ipconfig на PC-B. Проверьте данные IPv6-адреса.
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/2.jpg "")
 
@@ -236,9 +239,11 @@ Unauthorized access is strictly prohibited. #
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/4.jpg "")
 
-**Проверка сквозного подключения**
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/5.jpg "")
 
+<br>
+**Проверка сквозного подключения**
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/5.jpg "")
 
 > C:\ >tracert
     Cisco Packet Tracer PC Tracert
