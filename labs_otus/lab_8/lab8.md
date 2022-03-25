@@ -147,7 +147,7 @@ Unauthorized access is strictly prohibited. #
 ***Назначьте IPv6-адреса интерфейсам Ethernet на R1***
 > R1(config)# interface gigabitethernet 0/0/0
 
-> R1(config-if)# ipv6 address 2001:db8:acad:a::1/64
+> R1(config-if)# ipv6 address 2001:db8:acad: a::1/64
 
 > R1(config-if)#no shutdown
 
@@ -237,9 +237,9 @@ Unauthorized access is strictly prohibited. #
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/4.jpg "")
 
 
+<br>
 **Проверка сквозного подключения**
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/5.jpg "")
-
 
 > C:\ >tracert
     Cisco Packet Tracer PC Tracert
