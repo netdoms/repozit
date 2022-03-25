@@ -183,7 +183,8 @@ Unauthorized access is strictly prohibited. #
 
 > R1(config)#ipv6 unicast-routing
 
-	Теперь, когда R1 входит в группу многоадресной рассылки всех маршрутизаторов, еще раз введите команду ipconfig на PC-B. Проверьте данные IPv6-адреса.
+	Теперь, когда R1 входит в группу многоадресной рассылки всех маршрутизаторов,
+     еще раз введите команду ipconfig на PC-B. Проверьте данные IPv6-адреса.
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/2.jpg "")
 
