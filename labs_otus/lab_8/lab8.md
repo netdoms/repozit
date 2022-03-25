@@ -236,6 +236,7 @@ Unauthorized access is strictly prohibited. #
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/4.jpg "")
 
+
 **Проверка сквозного подключения**
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_8/5.jpg "")
 
