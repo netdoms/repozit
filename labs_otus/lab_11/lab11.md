@@ -119,9 +119,13 @@ Enter TEXT message.  End with the character '#'.
 
 > Switch#configure terminal
 
+    Enter configuration commands, one per line.  End with CNTL/Z.
+
 > Switch(config)#no ip domain-lookup
 
 > Switch(config)#hostname R1
+
+> S1(config)#ip domain name test
 
 > S1(config)# enable secret cisco
 
