@@ -115,6 +115,8 @@ Enter TEXT message.  End with the character '#'.
 
 **Настройте коммутатора**
 
+**Шаг 1. Настройте основные параметры коммутатора.**
+
 > Switch>enable 
 
 > Switch#configure terminal
@@ -123,7 +125,7 @@ Enter TEXT message.  End with the character '#'.
 
 > Switch(config)#no ip domain-lookup
 
-> Switch(config)#hostname R1
+> Switch(config)#hostname S1
 
 > S1(config)#ip domain name test
 
@@ -169,10 +171,29 @@ Enter TEXT message.  End with the character '#'.
 
 > S1(config-if)# end
 
+**Шаг 2. Настройка коммутатора для соединения по протоколу SSH**
 
+> S1(config)#ip domain name test
 
+> S1#crypto key generate rsa
 
+    The name for the keys will be: S1.test
+    Choose the size of the key modulus in the range of 360 to 2048 for your
+    General Purpose Keys. Choosing a key modulus greater than 512 may take
+    a few minutes.
 
+    How many bits in the modulus [512]: 768
+    % Generating 768 bit RSA keys, keys will be non-exportable...[OK]
+
+>S1(config)#line vty 0 4
+
+>S1(config)#username admin privilege 1 password Adm1nP@55
+
+    *Mar 1 1:8:2.468: %SSH-5-ENABLED: SSH 1.99 has been enabled
+
+>S1(config-line)#login local
+
+**Шаг 5. Сохраните текущую конфигурацию в файл загрузочной конфигурации.**
 
 > S1(config)#copy running-config startup-config
 
@@ -181,3 +202,42 @@ Enter TEXT message.  End with the character '#'.
     [OK]
 
   S1#reload
+
+
+**Шаг 6. Установите соединение с маршрутизатором по протоколу SSH.**
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_11/4.jpg "")
+
+**Настройка протокола SSH с использованием интерфейса командной строки (CLI) коммутатора**
+
+> S1#ssh ?
+
+  -l  Log in using this user name
+  -v  Specify SSH Protocol Version
+
+  S1#ssh -l admin 192.168.1.1
+
+    Password: 
+    % Password:  timeout expired!
+    % Login invalid
+
+    [Connection to 192.168.1.1 closed by foreign host]
+    S1#ssh -l admin 192.168.1.1
+
+    Password: 
+
+
+    Unauthorized access is strictly prohibited. 
+
+    R1>
+    R1>exit
+
+    [Connection to 192.168.1.1 closed by foreign host]
+    S1#
+
+Какие версии протокола SSH поддерживаются при использовании интерфейса командной строки?
+
+> S1#show ssh
+
+        %No SSHv2 server connections running.
+        %No SSHv1 server connections running
