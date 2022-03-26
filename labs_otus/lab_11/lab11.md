@@ -103,8 +103,12 @@ Enter TEXT message.  End with the character '#'.
 
 **Настройте компьютер PC-A**
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_11/2.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_11/4.jpg "")
 
+
+**Проверьте подключение к сети.**
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_11/5.jpg "")
 
 **Установите соединение с маршрутизатором по протоколу SSH**
 
