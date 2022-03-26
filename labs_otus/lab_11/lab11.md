@@ -205,7 +205,7 @@ Enter TEXT message.  End with the character '#'.
     Building configuration...
     [OK]
 
-  S1#reload
+>  S1#reload
 
 
 **Установите соединение с маршрутизатором по протоколу SSH.**
