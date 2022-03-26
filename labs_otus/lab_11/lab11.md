@@ -216,10 +216,10 @@ Enter TEXT message.  End with the character '#'.
 
 > S1#ssh ?
 
-  -l  Log in using this user name
-  -v  Specify SSH Protocol Version
+    -l  Log in using this user name
+    -v  Specify SSH Protocol Version
 
-  S1#ssh -l admin 192.168.1.1
+> S1#ssh -l admin 192.168.1.1
 
     Password: 
     % Password:  timeout expired!
