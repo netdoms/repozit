@@ -115,7 +115,7 @@ Enter TEXT message.  End with the character '#'.
 
 **Настройте коммутатора**
 
-**Шаг 1. Настройте основные параметры коммутатора.**
+**Настройте основные параметры коммутатора.**
 
 > Switch>enable 
 
@@ -171,7 +171,7 @@ Enter TEXT message.  End with the character '#'.
 
 > S1(config-if)# end
 
-**Шаг 2. Настройка коммутатора для соединения по протоколу SSH**
+**Настройка коммутатора для соединения по протоколу SSH**
 
 > S1(config)#ip domain name test
 
@@ -193,7 +193,7 @@ Enter TEXT message.  End with the character '#'.
 
 >S1(config-line)#login local
 
-**Шаг 5. Сохраните текущую конфигурацию в файл загрузочной конфигурации.**
+**Сохраните текущую конфигурацию в файл загрузочной конфигурации.**
 
 > S1(config)#copy running-config startup-config
 
@@ -204,7 +204,7 @@ Enter TEXT message.  End with the character '#'.
   S1#reload
 
 
-**Шаг 6. Установите соединение с маршрутизатором по протоколу SSH.**
+**Установите соединение с маршрутизатором по протоколу SSH.**
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_11/4.jpg "")
 
@@ -241,3 +241,5 @@ Enter TEXT message.  End with the character '#'.
 
         %No SSHv2 server connections running.
         %No SSHv1 server connections running
+
+        Как предоставить доступ к сетевому устройству нескольким пользователям, у каждого из которых есть собственное имя пользователя?
