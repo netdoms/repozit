@@ -72,9 +72,9 @@ Unauthorized access is strictly prohibited. #
 
 > R1(config-line)#transport input all
 
-> R1(config-line)#exit
+> R1(config-line)#end
 
-> R1(config)#copy running-config startup-config
+> R1#copy running-config startup-config
 
     Destination filename [startup-config]? 
     Building configuration...
@@ -143,7 +143,8 @@ Unauthorized access is strictly prohibited. #
 
     Changes to the running SDM preferences have been stored, but cannot take effect until the next reload.
     Use 'show sdm prefer' to see what SDM preference is currently active.
-    Switch(config)#end
+
+ >    S1(config)#end
 
 > S1#copy running-config startup-config
 

@@ -75,9 +75,9 @@
 
 > Unauthorized access is strictly prohibited. # 
 
- R1(config)#copy running-config startup-config
-
 > R1(config)#exit
+
+> R1#copy running-config startup-config
 
 > R1#clock set 15:05:00 27 Mar 2022
 

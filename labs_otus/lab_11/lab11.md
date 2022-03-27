@@ -93,9 +93,7 @@ Enter TEXT message.  End with the character '#'.
 
 > R1(config-line)#exit
 
-
-
-> R1(config)#copy running-config startup-config
+> R1#copy running-config startup-config
 
     Destination filename [startup-config]? 
     Building configuration...
@@ -203,9 +201,11 @@ Enter TEXT message.  End with the character '#'.
 
 >S1(config-line)#login local
 
+>S1(config-line)#end
+
 **Сохраните текущую конфигурацию в файл загрузочной конфигурации.**
 
-> S1(config)#copy running-config startup-config
+> S1#copy running-config startup-config
 
     Destination filename [startup-config]? 
     Building configuration...
