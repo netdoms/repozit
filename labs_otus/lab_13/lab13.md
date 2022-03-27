@@ -69,7 +69,20 @@
 
 > R1(config-line)#exit
 
+> R1(config)#banner motd #
 
+    Enter TEXT message.  End with the character '#'.
+
+> Unauthorized access is strictly prohibited. # 
+
+ R1(config)#copy running-config startup-config
+
+> R1(config)#exit
+
+> R1#clock set 15:05:00 27 Mar 2022
+
+
+  
 
 **Шаг Настройте базовые параметры каждого коммутатора.**
 
@@ -101,6 +114,18 @@
 
 > S1(config-line)#exit
 
+> S1(config)#banner motd #
+
+    Enter TEXT message.  End with the character '#'.
+
+> Unauthorized access is strictly prohibited. # 
+
+> S1(config)#copy running-config startup-config
+
+> S1(config)#exit
+
+> S1#clock set 15:05:00 27 Mar 2022
+
 
 **коммутатора S2**
 
@@ -130,7 +155,17 @@
 
 > S2(config-line)#exit
 
+> S2(config)#banner motd #
 
+    Enter TEXT message.  End with the character '#'.
+
+> Unauthorized access is strictly prohibited. # 
+
+> S2(config)#copy running-config startup-config
+
+> S2(config)#exit
+
+> S2#clock set 15:05:00 27 Mar 2022
 
 **Шаг 4. Настройте узлы ПК.**
 
