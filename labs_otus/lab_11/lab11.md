@@ -141,7 +141,11 @@ Enter TEXT message.  End with the character '#'.
 
 > S1(config)#line console 0
 
+> S1(config-line)#logging synchronous
+
 > S1(config-line)#password class
+
+> S1(config-line)#login
 
 > S1(config-line)#exit
 
