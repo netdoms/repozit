@@ -51,13 +51,23 @@
 
 > Router(config)#hostname R1
 
-> S1(config)#line con 0
+> R1(config)#line con 0
 
-> S1(config-line)#logging synchronous
+> R1(config-line)#logging synchronous
 
-> S1(config-line)#password cisco
+> R1(config-line)#password cisco
 
-> S1(config-line)#login
+> R1(config-line)#login
+
+> R1(config)#line vty 0 4
+
+> R1(config-line)#password cisco
+
+> R1(config-line)#login
+
+> R1(config-line)#transport input all
+
+> R1(config-line)#exit
 
 
 
@@ -81,6 +91,15 @@
 
 > S1(config-line)#login
 
+> S1(config)#line vty 0 4
+
+> S1(config-line)#password cisco
+
+> S1(config-line)#login
+
+> S1(config-line)#transport input all
+
+> S1(config-line)#exit
 
 
 **коммутатора S2**
@@ -100,6 +119,17 @@
 > S2(config-line)#password cisco
 
 > S2(config-line)#login
+
+> S2(config)#line vty 0 4
+
+> S2(config-line)#password cisco
+
+> S2(config-line)#login
+
+> S2(config-line)#transport input all
+
+> S2(config-line)#exit
+
 
 
 **Шаг 4. Настройте узлы ПК.**
