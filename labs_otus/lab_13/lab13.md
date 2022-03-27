@@ -63,6 +63,45 @@
 
 **Шаг Настройте базовые параметры каждого коммутатора.**
 
+**коммутатора S1**
+
+> Switch>enable 
+
+> Switch#configure terminal
+
+> Switch(config)#no ip domain-lookup
+
+> Switch(config)#hostname S1
+
+> S1(config)#line con 0
+
+> S1(config-line)#logging synchronous
+
+> S1(config-line)#password cisco
+
+> S1(config-line)#login
+
+
+
+**коммутатора S2**
+
+> Switch>enable 
+
+> Switch#configure terminal
+
+> Switch(config)#no ip domain-lookup
+
+> Switch(config)#hostname S2
+
+> S2(config)#line con 0
+
+> S2(config-line)#logging synchronous
+
+> S2(config-line)#password cisco
+
+> S2(config-line)#login
+
+
 **Шаг 4. Настройте узлы ПК.**
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/2.jpg "")
