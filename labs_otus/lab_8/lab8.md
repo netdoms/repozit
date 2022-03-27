@@ -48,7 +48,11 @@
 
 > R1(config)#line console 0
 
+> R1(config-line)#logging synchronous
+
 > R1(config-line)#password class
+
+> R1(config-line)#login
 
 > R1(config-line)#exit
 
@@ -107,7 +111,15 @@ Unauthorized access is strictly prohibited. #
 
 > Switch(config)#hostname S1
 
+> S1(config)#line console 0
+
+> S1(config-line)#logging synchronous
+
 > S1(config)#enable secret class
+
+> S1(config-line)#login
+
+> S1(config-line)#exit
 
 > S1(config)#service password-encryption
 
