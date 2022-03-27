@@ -63,7 +63,7 @@
 
 > R1(config-line)#password class
 
-S1(config-line)#login
+> S1(config-line)#login
 
 > R1(config-line)#exit
 
