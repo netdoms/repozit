@@ -161,9 +161,9 @@
 
 > Unauthorized access is strictly prohibited. # 
 
-> S2(config)#copy running-config startup-config
-
 > S2(config)#exit
+
+> S2#copy running-config startup-config
 
 > S2#clock set 15:05:00 27 Mar 2022
 
