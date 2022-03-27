@@ -33,8 +33,6 @@
 
 > R1(config)#ip domain name test
 
-размер ключа, я ответил 768
-
 > R1#crypto key generate rsa
 
 > R1#show ssh
