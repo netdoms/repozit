@@ -59,11 +59,11 @@
 
 > R1(config)#line console 0
 
-> S1(config-line)#logging synchronous
+> R1(config-line)#logging synchronous
 
 > R1(config-line)#password class
 
-> S1(config-line)#login
+> R1(config-line)#login
 
 > R1(config-line)#exit
 
