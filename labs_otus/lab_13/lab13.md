@@ -43,6 +43,23 @@
 
 **Шаг Настройте базовые параметры для маршрутизатора**
 
+> Router>enable 
+
+> Router#configure terminal
+
+> Router(config)#no ip domain-lookup
+
+> Router(config)#hostname R1
+
+> S1(config)#line con 0
+
+> S1(config-line)#logging synchronous
+
+> S1(config-line)#password cisco
+
+> S1(config-line)#login
+
+
 
 **Шаг Настройте базовые параметры каждого коммутатора.**
 
