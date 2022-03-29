@@ -177,13 +177,15 @@
 
 **S1 vlan1**
 
-S1(config)#interface vlan1
+S1(config)#interface vlan10
 
 > S1(config-if)#ip address 192.168.1.11 255.255.255.0
 
 > S1(config-if)#ip default-gateway 192.168.10.1
 
-> S1(config)#interface vlan1
+> S1(config-if)#exit
+
+> S1(config)#interface vlan10
 
 > S1(config-if)#no shutdown
 
@@ -311,13 +313,13 @@ S1(config-if)#Switchport trunk allowed vlan 10,20,30,1000
 
 **S2**   
 
-S2(config)#interface vlan1
+S2(config)#interface vlan10
 
 > S2(config-if)#ip address 192.168.1.12 255.255.255.0
 
 > S2(config-if)#ip default-gateway 192.168.10.1
 
-> S2(config)#interface vlan1
+> S2(config)#interface vlan10
 
 > S2(config-if)#no shutdown
 
