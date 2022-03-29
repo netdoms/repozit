@@ -281,7 +281,9 @@ S1(config-if)#interface f0/5
 
 S1(config-if)#switchport mode trunk
 
+S1(config-if)#Switchport trunk native vlan 1000
 
+S1(config-if)#Switchport trunk allowed vlan 10,20,30,1000
 
 **Транк S1 f0/1**
 
@@ -331,11 +333,40 @@ S2(config-if)#no shutdown
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/18, changed state to up
 
+**VLAN  S2**
+S2(config)#vlan 10
+
+S2(config-vlan)#name cisco
+
+S2(config)#vlan 20
+
+S2(config-vlan)#name Sales
+
+S2(config)#vlan 30
+
+S2(config-vlan)#name Operations
+
 S2(config-if)#switchport mode  access
 
 S2(config-if)#switchport access vlan 30
 
 S2(config-if)#exit
+
+S2(config)#vlan 1000
+
+S2(config-vlan)#name native
+
+S2(config-vlan)#vlan 999
+
+S2(config)#interface f0/2-17, f0/19-24, g0/1-2
+
+S2(config-if-range)#switchport mode access
+
+S2(config-if-range)#switchport access vlan 999
+
+S2(config-if-range)#shutdown
+
+
 
 **Транк S2 f0/1**
 
@@ -363,3 +394,66 @@ S2(config-if)#Switchport trunk allowed vlan 10,20,30,1000
 **Вручную настройте магистральный интерфейс F0/5 на коммутаторе S1.**
 
 **Настройте маршрутизатор.**
+
+R1(config)#interface G0/0/1.10
+
+R1(config-subif)#encapsulation dot1Q 10
+
+R1(config-subif)#ip address 192.168.10.1 255.255.255.0
+
+R1(config-subif)#no shutdown
+
+R1(config-subif)#exit
+
+R1(config)#interface G0/0/1.20
+
+R1(config-subif)#encapsulation dot1Q 20
+
+R1(config-subif)#ip address 192.168.20.1 255.255.255.0
+
+R1(config-subif)#no shutdown
+
+R1(config-subif)#exit
+
+R1(config)#interface G0/0/1.30
+
+R1(config-subif)#encapsulation dot1Q 30
+
+R1(config-subif)#ip address 192.168.30.1 255.255.255.0
+
+R1(config-subif)#no shutdown
+
+R1(config-subif)#exit
+
+R1(config)#interface G0/0/1.1000
+
+R1(config-subif)#no shutdown
+
+R1(config-subif)#encapsulation dot1Q 1000 native
+
+R1(config-subif)#exit
+
+R1(config)#interface G0/0/1
+
+R1(config-if)#no shutdown 
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1.10, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.10, changed state to up
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1.20, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.20, changed state to up
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1.30, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.30, changed state to up
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1.1000, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.1000, changed state to up
+
