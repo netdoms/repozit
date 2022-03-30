@@ -292,6 +292,10 @@
 
 > S1(config-if)#Switchport trunk allowed vlan 10,20,30,1000
 
+*Что произойдет, если G0/0/1 на R1 будет отключен?*
+
+Ничего
+
 **Транк S1 f0/1**
 
 > S1(config)#interface f0/1
