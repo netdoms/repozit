@@ -73,7 +73,11 @@
 
     Enter TEXT message.  End with the character '#'.
 
-> Unauthorized access is strictly prohibited. # 
+> Unauthorized access is strictly prohibited. #
+
+> R1(config)#enable secret class
+
+> R1(config)#service password-encryption
 
 > R1(config)#exit
 
@@ -117,6 +121,10 @@
 
 > Unauthorized access is strictly prohibited. # 
 
+> S1(config)#enable secret class
+
+> S1(config)#service password-encryption
+
 > S1(config)#copy running-config startup-config
 
 > S1(config)#exit
@@ -156,6 +164,10 @@
     Enter TEXT message.  End with the character '#'.
 
 > Unauthorized access is strictly prohibited. # 
+
+> S2(config)#enable secret class
+
+> S2(config)#service password-encryption
 
 > S2(config)#exit
 
