@@ -81,9 +81,6 @@
 
 > R1#clock set 15:05:00 27 Mar 2022
 
-
-  
-
 **Шаг Настройте базовые параметры каждого коммутатора.**
 
 **коммутатора S1**
@@ -125,7 +122,6 @@
 > S1(config)#exit
 
 > S1#clock set 15:05:00 27 Mar 2022
-
 
 **коммутатора S2**
 
@@ -177,7 +173,7 @@
 
 **S1 vlan1**
 
-S1(config)#interface vlan10
+> S1(config)#interface vlan10
 
 > S1(config-if)#ip address 192.168.1.11 255.255.255.0
 
@@ -195,31 +191,31 @@ S1(config)#interface vlan10
 
 **VLAN  S1**
 
-S1(config)#vlan 10
+> S1(config)#vlan 10
 
-S1(config-vlan)#name cisco
+> S1(config-vlan)#name cisco
 
-S1(config)#vlan 20
+> S1(config)#vlan 20
 
-S1(config-vlan)#name Sales
+> S1(config-vlan)#name Sales
 
-S1(config)#vlan 30
+> S1(config)#vlan 30
 
-S1(config-vlan)#name Operations
+> S1(config-vlan)#name Operations
 
-S1(config)#vlan 1000
+> S1(config)#vlan 1000
 
-S1(config-vlan)#name native
+> S1(config-vlan)#name native
 
-S1(config-vlan)#vlan 999
+> S1(config-vlan)#vlan 999
 
-S1(config)#interface range F0/2-4, F0/7-24, G0/1-2
+> S1(config)#interface range F0/2-4, F0/7-24, G0/1-2
 
-S1(config-if-range)#switchport mode access
+> S1(config-if-range)#switchport mode access
 
-S1(config-if-range)#switchport access vlan 999
+> S1(config-if-range)#switchport access vlan 999
 
-S1(config-if-range)#shutdown
+> S1(config-if-range)#shutdown
 
     %LINK-5-CHANGED: Interface FastEthernet0/2, changed state to administratively down
 
@@ -267,53 +263,46 @@ S1(config-if-range)#shutdown
 
     %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
 
-
-
 **S1 интерфейсы**    
 
-S1(config)#interface f0/6
+> S1(config)#interface f0/6
 
-S1(config-if)#switchport mode  access
+> S1(config-if)#switchport mode  access
 
-S1(config-if)#switchport access vlan 20
-
+> S1(config-if)#switchport access vlan 20
 
 **Транк S1 f0/5**
-S1(config-if)#interface f0/5
+> S1(config-if)#interface f0/5
 
-S1(config-if)#switchport mode trunk
+> S1(config-if)#switchport mode trunk
 
-S1(config-if)#Switchport trunk native vlan 1000
+> S1(config-if)#Switchport trunk native vlan 1000
 
-S1(config-if)#Switchport trunk allowed vlan 10,20,30,1000
+> S1(config-if)#Switchport trunk allowed vlan 10,20,30,1000
 
 **Транк S1 f0/1**
 
-S1(config)#interface f0/1
+> S1(config)#interface f0/1
 
-
-
-S1(config-if)#switchport mode trunk
+> S1(config-if)#switchport mode trunk
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
 
-S1(config-if)#switchport mode trunk
+> S1(config-if)#switchport mode trunk
 
-S1(config-if)#Switchport trunk native vlan 1000
+> S1(config-if)#Switchport trunk native vlan 1000
 
     %CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on FastEthernet0/1 (1000), with S2 FastEthernet0/1 (1).
 
-S1(config-if)#Switchport trunk allowed vlan 10,20,30,1000
-
-
+> S1(config-if)#Switchport trunk allowed vlan 10,20,30,1000
 
 **Создайте сети VLAN** 
 
 **S2**   
 
-S2(config)#interface vlan10
+> S2(config)#interface vlan10
 
 > S2(config-if)#ip address 192.168.1.12 255.255.255.0
 
@@ -327,117 +316,101 @@ S2(config)#interface vlan10
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
 
-S2(config)#interface f0/18
+> S2(config)#interface f0/18
 
-S2(config-if)#no shutdown
+> S2(config-if)#no shutdown
 
     %LINK-5-CHANGED: Interface FastEthernet0/18, changed state to up
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/18, changed state to up
 
 **VLAN  S2**
-S2(config)#vlan 10
+> S2(config)#vlan 10
 
-S2(config-vlan)#name cisco
+> S2(config-vlan)#name cisco
 
-S2(config)#vlan 20
+> S2(config)#vlan 20
 
-S2(config-vlan)#name Sales
+> S2(config-vlan)#name Sales
 
-S2(config)#vlan 30
+> S2(config)#vlan 30
 
-S2(config-vlan)#name Operations
+> S2(config-vlan)#name Operations
 
-S2(config-if)#switchport mode  access
+> S2(config-if)#switchport mode  access
 
-S2(config-if)#switchport access vlan 30
+> S2(config-if)#switchport access vlan 30
 
-S2(config-if)#exit
+> S2(config-if)#exit
 
-S2(config)#vlan 1000
+> S2(config)#vlan 1000
 
-S2(config-vlan)#name native
+> S2(config-vlan)#name native
 
-S2(config-vlan)#vlan 999
+> S2(config-vlan)#vlan 999
 
-S2(config)#interface f0/2-17, f0/19-24, g0/1-2
+> S2(config)#interface f0/2-17, f0/19-24, g0/1-2
 
-S2(config-if-range)#switchport mode access
+> S2(config-if-range)#switchport mode access
 
-S2(config-if-range)#switchport access vlan 999
+> S2(config-if-range)#switchport access vlan 999
 
-S2(config-if-range)#shutdown
-
-
+> S2(config-if-range)#shutdown
 
 **Транк S2 f0/1**
 
-S2(config)#interface f0/1
+> S2(config)#interface f0/1
 
-S2(config-if)#switchport mode trunk
+> S2(config-if)#switchport mode trunk
 
-S2(config-if)#Switchport trunk native vlan 1000
+> S2(config-if)#Switchport trunk native vlan 1000
 
-S2(config-if)#Switchport trunk allowed vlan 10,20,30,1000
+> S2(config-if)#Switchport trunk allowed vlan 10,20,30,1000
 
-
-
-
-
-
-
-
-
-
-
-
-**Вручную настройте магистральный интерфейс F0/1 на коммутаторах S1 и S2.**
-
-**Вручную настройте магистральный интерфейс F0/5 на коммутаторе S1.**
 
 **Настройте маршрутизатор.**
 
-R1(config)#interface G0/0/1.10
+> R1(config)#interface G0/0/1.10
 
-R1(config-subif)#encapsulation dot1Q 10
+> R1(config-subif)#encapsulation dot1Q 10
 
-R1(config-subif)#ip address 192.168.10.1 255.255.255.0
+> R1(config-subif)#ip address 192.168.10.1 255.255.255.0
 
-R1(config-subif)#no shutdown
+> R1(config-subif)#no shutdown
 
-R1(config-subif)#exit
+> R1(config-subif)#exit
 
-R1(config)#interface G0/0/1.20
+> R1(config)#interface G0/0/1.20
 
-R1(config-subif)#encapsulation dot1Q 20
+> R1(config-subif)#encapsulation dot1Q 20
 
-R1(config-subif)#ip address 192.168.20.1 255.255.255.0
+> R1(config-subif)#ip address 192.168.20.1 255.255.255.0
 
-R1(config-subif)#no shutdown
+> R1(config-subif)#no shutdown
 
-R1(config-subif)#exit
+> R1(config-subif)#exit
 
-R1(config)#interface G0/0/1.30
+> R1(config)#interface G0/0/1.30
 
-R1(config-subif)#encapsulation dot1Q 30
+> R1(config-subif)#encapsulation dot1Q 30
 
-R1(config-subif)#ip address 192.168.30.1 255.255.255.0
+> R1(config-subif)#ip address 192.168.30.1 255.255.255.0
 
-R1(config-subif)#no shutdown
+> R1(config-subif)#no shutdown
 
-R1(config-subif)#exit
+> R1(config-subif)#exit
 
-R1(config)#interface G0/0/1.1000
+> R1(config)#interface G0/0/1.1000
 
-R1(config-subif)#no shutdown
+> R1(config-subif)#no shutdown
 
-R1(config-subif)#encapsulation dot1Q 1000 native
+> R1(config-subif)#encapsulation dot1Q 1000 native
 
-R1(config-subif)#exit
+> R1(config-subif)#exit
 
-R1(config)#interface G0/0/1
+> R1(config)#interface G0/0/1
 
-R1(config-if)#no shutdown 
+> R1(config-if)#no shutdown 
 
     %LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
 
@@ -459,3 +432,25 @@ R1(config-if)#no shutdown
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.1000, changed state to up
 
+**Проверьте, работает ли маршрутизация между VLAN**
+
+*Отправьте эхо-запрос с PC-A на шлюз по умолчанию.*
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/7.jpg "")
+
+
+Отправьте эхо-запрос с PC-A на PC-B.
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/8.jpg "")
+
+Отправьте команду ping с компьютера PC-A на коммутатор S2.
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/9.jpg "")
+
+В окне командной строки на PC-B выполните команду tracert на адрес PC-A.
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/6.jpg "")
+
+Какие промежуточные IP-адреса отображаются в результатах?
+
+    192.168.30.1   192.168.20.3
