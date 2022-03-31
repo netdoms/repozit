@@ -464,8 +464,6 @@
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/9.jpg "")
 
-Виртуальный интерфейс свитчей пингуется только на самом свитче.
-
 В окне командной строки на PC-B выполните команду tracert на адрес PC-A.
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/6.jpg "")
