@@ -124,3 +124,44 @@
 
 > S1 copy running-config startup-config
 
+**коммутатора базовые параметры S2**
+
+> Switch>enable 
+
+> Switch#configure terminal
+
+> Switch(config)#no ip domain-lookup
+
+> Switch(config)#hostname S2
+
+> S2(config)#line con 0
+
+> S2(config-line)#logging synchronous
+
+> S2(config-line)#password cisco
+
+> S2(config-line)#login
+
+> S2(config)#line vty 0 4
+
+> S2(config-line)#password cisco
+
+> S2(config-line)#login
+
+> S2(config-line)#transport input all
+
+> S2(config-line)#exit
+
+> S2(config)#banner motd #
+
+    Enter TEXT message.  End with the character '#'.
+
+> Unauthorized access is strictly prohibited. # 
+
+> S2(config)#enable secret class
+
+> S2(config)#service password-encryption
+
+> S2(config)#exit
+
+> S2#copy running-config startup-config
