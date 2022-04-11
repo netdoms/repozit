@@ -30,4 +30,97 @@
 
 *Часть 5. Настройка и проверка DHCPv6 Relay на R2*
 
+**коммутатора базовые параметры S1**
+
+> Switch>enable 
+
+> Switch#configure terminal
+
+> Switch(config)#no ip domain-lookup
+
+> Switch(config)#hostname S1
+
+> S1(config)#line con 0
+
+> S1(config-line)#logging synchronous
+
+> S1(config-line)#password cisco
+
+> S1(config-line)#login
+
+> S1(config)#line vty 0 4
+
+> S1(config-line)#password cisco
+
+> S1(config-line)#login
+
+> S1(config-line)#transport input all
+
+> S1(config-line)#exit
+
+> S1(config)#banner motd #
+
+    Enter TEXT message.  End with the character '#'.
+
+> Unauthorized access is strictly prohibited. # 
+
+> S1(config)#enable secret class
+
+> S1(config)#service password-encryption
+
+> S1(config)#interface range F0/2-4, F0/7-24, G0/1-2
+
+> S1(config-if-range)#switchport mode access
+
+> S1(config-if-range)#shutdown
+
+    %LINK-5-CHANGED: Interface FastEthernet0/2, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/3, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/4, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/7, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/8, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/9, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/10, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/11, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/12, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/13, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/14, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/15, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/16, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/17, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/18, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/19, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/20, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/21, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/22, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/23, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/24, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
+
+> S1(config)#exit
+
+> S1 copy running-config startup-config
 
