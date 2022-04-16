@@ -204,6 +204,12 @@
 
 > R1(config)#service password-encryption
 
+> R1(config)#int r F0/2-4, F0/7-24, G0/1-2
+
+> S1(config-if-range)#switchport mode access
+
+> S1(config-if-range)#shutdown
+
 > R1(config)#exit
 
 > R1#copy running-config startup-config
@@ -246,6 +252,59 @@
 > R2(config)#enable secret class
 
 > R2(config)#service password-encryption
+
+> R2(config)#int r F0/2-4, F0/6-17,F0/19-24, G0/1-2
+
+> S2(config-if-range)#switchport mode access
+
+> S2(config-if-range)#shutdown
+
+    %LINK-5-CHANGED: Interface FastEthernet0/2, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/3, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/4, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/6, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/7, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/8, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/9, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/10, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/11, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/12, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/13, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/14, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/15, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/16, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/17, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/19, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/20, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/21, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/22, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/23, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/24, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
+
 
 > R2(config)#exit
 
