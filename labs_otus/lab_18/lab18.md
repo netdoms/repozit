@@ -286,7 +286,7 @@ R1(config-if)#ipv6 address fe80::1 link-local
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
 
-
+>R1(config-if)#ipv6 unicast-routing
 
 
 > R1#copy running-config startup-config
@@ -341,6 +341,8 @@ R1(config-if)#ipv6 address fe80::1 link-local
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to up
 
+>R2(config-if)#ipv6 unicast-routing    
+
 > R2(config)#interface GigabitEthernet0/0/1
 
 R2(config-if)#ipv6 address 2001:db8:acad:3::1/64
@@ -361,3 +363,24 @@ R1#ping 2001:db8:acad:2::2
     Sending 5, 100-byte ICMP Echos to 2001:db8:acad:2::2, timeout is 2 seconds:
     !!!!!
     Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+
+**Проверка назначения адреса SLAAC от R1**
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/2.jpg "")
+
+
+**Настройте R1 для предоставления DHCPv6 без состояния для PC-A**
+
+> R1(config)#ipv6 dhcp pool R1-STATELESS
+
+> R1(config-dhcpv6)#dns-server 2001:db8:acad::254
+
+> R1(config-dhcpv6)#domain-name STATELESS.com
+
+> R1(config-dhcpv6)#exit
+
+> R1(config)#interface g0/0/1
+
+> R1(config-if)#ipv6 nd other-config-flag
+
+> R1(config-if)#ipv6 dhcp server R1-STATELESS
