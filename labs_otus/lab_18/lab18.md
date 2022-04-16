@@ -164,100 +164,7 @@
 
 > S2(config)#exit
 
-> S2#copy running-config startup-config
-
-**Шаг Настройте базовые параметры для маршрутизатора R1**
-
-> Router>enable 
-
-> Router#configure terminal
-
-> Router(config)#no ip domain-lookup
-
-> Router(config)#hostname R1
-
-> R1(config)#line con 0
-
-> R1(config-line)#logging synchronous
-
-> R1(config-line)#password cisco
-
-> R1(config-line)#login
-
-> R1(config)#line vty 0 4
-
-> R1(config-line)#password cisco
-
-> R1(config-line)#login
-
-> R1(config-line)#transport input all
-
-> R1(config-line)#exit
-
-> R1(config)#banner motd #
-
-    Enter TEXT message.  End with the character '#'.
-
-> Unauthorized access is strictly prohibited. #
-
-> R1(config)#enable secret class
-
-> R1(config)#service password-encryption
-
-> R1(config)#int r F0/2-4, F0/7-24, G0/1-2
-
-> S1(config-if-range)#switchport mode access
-
-> S1(config-if-range)#shutdown
-
-> R1(config)#exit
-
-> R1(config)#interface gigabitethernet 0/0/0
-
-> R1(config-if)# ipv6 address 2001:db8:acad:2::1/64
-
-> R1#copy running-config startup-config
-
-
-**Шаг Настройте базовые параметры для маршрутизатора R2**
-
-> Router>enable 
-
-> Router#configure terminal
-
-> Router(config)#no ip domain-lookup
-
-> Router(config)#hostname R2
-
-> R2(config)#line con 0
-
-> R2(config-line)#logging synchronous
-
-> R2(config-line)#password cisco
-
-> R2(config-line)#login
-
-> R2(config)#line vty 0 4
-
-> R2(config-line)#password cisco
-
-> R2(config-line)#login
-
-> R2(config-line)#transport input all
-
-> R2(config-line)#exit
-
-> R2(config)#banner motd #
-
-    Enter TEXT message.  End with the character '#'.
-
-> Unauthorized access is strictly prohibited. #
-
-> R2(config)#enable secret class
-
-> R2(config)#service password-encryption
-
-> R2(config)#int r F0/2-4, F0/6-17,F0/19-24, G0/1-2
+> S2(config)#int r F0/2-4, F0/6-17,F0/19-24, G0/1-2
 
 > S2(config-if-range)#switchport mode access
 
@@ -310,6 +217,147 @@
     %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
 
 
+
+> S2#copy running-config startup-config
+
+**Шаг Настройте базовые параметры для маршрутизатора R1**
+
+> Router>enable 
+
+> Router#configure terminal
+
+> Router(config)#no ip domain-lookup
+
+> Router(config)#hostname R1
+
+> R1(config)#line con 0
+
+> R1(config-line)#logging synchronous
+
+> R1(config-line)#password cisco
+
+> R1(config-line)#login
+
+> R1(config)#line vty 0 4
+
+> R1(config-line)#password cisco
+
+> R1(config-line)#login
+
+> R1(config-line)#transport input all
+
+> R1(config-line)#exit
+
+> R1(config)#banner motd #
+
+    Enter TEXT message.  End with the character '#'.
+
+> Unauthorized access is strictly prohibited. #
+
+> R1(config)#enable secret class
+
+> R1(config)#service password-encryption
+
+> R1(config)#int r F0/2-4, F0/7-24, G0/1-2
+
+> R1(config-if-range)#switchport mode access
+
+> R1(config-if-range)#shutdown
+
+> R1(config)#exit
+
+> R1(config)#interface GigabitEthernet0/0/0
+
+> R1(config-if)#ipv6 address 2001:db8:acad:2::1/64
+
+> R1(config-if)#ipv6 address fe80::1 link-local
+
+>R1(config-if)#no shutdown
+
+> R1(config)#interface GigabitEthernet0/0/1
+
+R1(config-if)#ipv6 address 2001:db8:acad:1::1/64
+
+R1(config-if)#ipv6 address fe80::1 link-local
+
+>R1(config-if)#no shutdown
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
+
+
+
+
+> R1#copy running-config startup-config
+
+**Шаг Настройте базовые параметры для маршрутизатора R2**
+
+> Router>enable 
+
+> Router#configure terminal
+
+> Router(config)#no ip domain-lookup
+
+> Router(config)#hostname R2
+
+> R2(config)#line con 0
+
+> R2(config-line)#logging synchronous
+
+> R2(config-line)#password cisco
+
+> R2(config-line)#login
+
+> R2(config)#line vty 0 4
+
+> R2(config-line)#password cisco
+
+> R2(config-line)#login
+
+> R2(config-line)#transport input all
+
+> R2(config-line)#exit
+
+> R2(config)#banner motd #
+
+    Enter TEXT message.  End with the character '#'.
+
+> Unauthorized access is strictly prohibited. #
+
+> R2(config)#enable secret class
+
+> R2(config)#service password-encryption
+
+> R2(config)#interface GigabitEthernet0/0/0
+
+> R2(config-if)#ipv6 address 2001:db8:acad:2::2/64
+
+> R2(config-if)#ipv6 address fe80::2 link-local
+
+>R2(config-if)#no shutdown
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to up
+
+> R2(config)#interface GigabitEthernet0/0/1
+
+R2(config-if)#ipv6 address 2001:db8:acad:3::1/64
+
+R2(config-if)#ipv6 address fe80::1 link-local
+
+>R2(config-if)#no shutdown
+
 > R2(config)#exit
 
 > R2#copy running-config startup-config
+
+**Убедитесь, что маршрутизация работает с помощью пинга адреса**
+
+R1#ping 2001:db8:acad:2::2
+
+    Type escape sequence to abort.
+    Sending 5, 100-byte ICMP Echos to 2001:db8:acad:2::2, timeout is 2 seconds:
+    !!!!!
+    Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms

@@ -172,7 +172,7 @@ Unauthorized access is strictly prohibited. #
 
 > R1(config-if)#exit
 
-> R1(config)# interface gigabitethernet 0/0/1
+> R1(config)# interface gigabitethernet 0/0/0
 
 > R1(config-if)#ipv6 address 2001:db8:acad:1::1/64
 
@@ -182,10 +182,13 @@ Unauthorized access is strictly prohibited. #
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
 
-> R1(config-if)#ipv6 address fe80::1:1 link-local
+> R1(config-if)#ipv6 address fe80::1 link-local
 
 > R1(config-if)#no shutdown
 
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to up
+
+    R1(config-if)#exit
 
 ***Активируйте IPv6-маршрутизацию на R1***
 
