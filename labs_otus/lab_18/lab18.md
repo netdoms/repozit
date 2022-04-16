@@ -212,6 +212,10 @@
 
 > R1(config)#exit
 
+> R1(config)#interface gigabitethernet 0/0/0
+
+> R1(config-if)# ipv6 address 2001:db8:acad:2::1/64
+
 > R1#copy running-config startup-config
 
 
