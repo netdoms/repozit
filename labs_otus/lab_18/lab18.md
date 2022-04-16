@@ -384,3 +384,30 @@ R1#ping 2001:db8:acad:2::2
 > R1(config-if)#ipv6 nd other-config-flag
 
 > R1(config-if)#ipv6 dhcp server R1-STATELESS
+
+> R1#copy running-config startup-config
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/3.jpg "")
+
+
+**Настройка сервера DHCPv6 с сохранением состояния на R1**
+
+> R1(config)#ipv6 dhcp pool R2-STATEFUL
+
+> R1(config-dhcpv6)#address prefix 2001:db8:acad:3:aaa::/80
+
+> R1(config-dhcpv6)#dns-server 2001:db8:acad::254
+
+> R1(config-dhcpv6)#domain-name STATEFUL.com
+
+> R1(config-dhcpv6)#exit
+
+> R1(config)#interface g0/0/0
+
+> R1(config-if)#ipv6 dhcp server R2-STATEFUL
+
+**Настройка и проверка ретрансляции DHCPv6 на R2.**
+**Включите PC-B и проверьте адрес SLAAC, который он генерирует.**
+
+
+
