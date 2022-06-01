@@ -208,7 +208,7 @@
 > S1(config-vlan)#name cisco
 
 > S1(config)#vlan 20
-
+sho
 > S1(config-vlan)#name Sales
 
 > S1(config)#vlan 30
