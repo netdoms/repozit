@@ -68,61 +68,34 @@
 
 > S1(config)#service password-encryption
 
-> S1(config)#interface range F0/2-4, F0/7-24, G0/1-2
+> S1(config)#interface range Gi0/0-1, Gi1/0-3
 
 > S1(config-if-range)#switchport mode access
 
 > S1(config-if-range)#shutdown
 
-    %LINK-5-CHANGED: Interface FastEthernet0/2, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/3, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/4, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/7, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/8, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/9, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/10, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/11, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/12, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/13, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/14, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/15, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/16, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/17, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/18, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/19, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/20, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/21, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/22, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/23, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/24, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
+    *Jun  3 11:06:01.520: %LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to administratively down
+    *Jun  3 11:06:01.590: %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
+    *Jun  3 11:06:01.633: %LINK-5-CHANGED: Interface GigabitEthernet1/0, changed state to administratively down
+    *Jun  3 11:06:01.695: %LINK-5-CHANGED: Interface GigabitEthernet1/1, changed state to administratively down
+    *Jun  3 11:06:01.806: %LINK-5-CHANGED: Interface GigabitEthernet1/2, changed state to administratively down
+    *Jun  3 11:06:01.863: %LINK-5-CHANGED: Interface GigabitEthernet1/3, changed state to administratively down
+    *Jun  3 11:06:02.533: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/2, changed state to down
+    S1(config-if-range)#
+    *Jun  3 11:06:02.590: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/3, changed state to down
+    *Jun  3 11:06:02.631: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to down
+    *Jun  3 11:06:02.700: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to down
+    *Jun  3 11:06:03.226: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to down
+    *Jun  3 11:06:03.231: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/3, changed state to down
 
 > S1(config)#exit
 
-> S1 copy running-config startup-config
+> S1(config)#exit
+
+    *Jun  3 11:08:19.225: %SYS-5-CONFIG_I: Configured from console by console
+
+
+> S1# copy running-config startup-config
 
 **коммутатора базовые параметры S2**
 
@@ -164,59 +137,29 @@
 
 > S2(config)#exit
 
-> S2(config)#int r F0/2-4, F0/6-17,F0/19-24, G0/1-2
+> S2(config)#interface range Gi0/0-1, Gi1/0-3
 
 > S2(config-if-range)#switchport mode access
 
 > S2(config-if-range)#shutdown
 
-    %LINK-5-CHANGED: Interface FastEthernet0/2, changed state to administratively down
+    *Jun  3 11:45:48.315: %LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to administratively down
+    *Jun  3 11:45:48.381: %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
+    *Jun  3 11:45:48.445: %LINK-5-CHANGED: Interface GigabitEthernet1/0, changed state to administratively down
+    *Jun  3 11:45:48.562: %LINK-5-CHANGED: Interface GigabitEthernet1/1, changed state to administratively down
+    *Jun  3 11:45:48.594: %LINK-5-CHANGED: Interface GigabitEthernet1/2, changed state to administratively down
+    *Jun  3 11:45:48.624: %LINK-5-CHANGED: Interface GigabitEthernet1/3, changed state to administratively down
+    *Jun  3 11:45:49.319: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
+    S2(config-if-range)#
+    *Jun  3 11:45:49.385: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
+    *Jun  3 11:45:49.450: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to down
+    *Jun  3 11:45:49.984: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to down
+    *Jun  3 11:45:49.984: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to down
+    *Jun  3 11:45:49.984: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/3, changed state to down
 
-    %LINK-5-CHANGED: Interface FastEthernet0/3, changed state to administratively down
+> S2(config-if-range)#exit
 
-    %LINK-5-CHANGED: Interface FastEthernet0/4, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/6, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/7, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/8, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/9, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/10, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/11, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/12, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/13, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/14, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/15, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/16, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/17, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/19, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/20, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/21, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/22, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/23, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/24, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
-
-
+> S2(config)#exit
 
 > S2#copy running-config startup-config
 
@@ -258,15 +201,9 @@
 
 > R1(config)#service password-encryption
 
-> R1(config)#int r F0/2-4, F0/7-24, G0/1-2
 
-> R1(config-if-range)#switchport mode access
 
-> R1(config-if-range)#shutdown
-
-> R1(config)#exit
-
-> R1(config)#interface GigabitEthernet0/0/0
+> R1(config)#interface Gi0/0
 
 > R1(config-if)#ipv6 address 2001:db8:acad:2::1/64
 
@@ -274,7 +211,11 @@
 
 >R1(config-if)#no shutdown
 
-> R1(config)#interface GigabitEthernet0/0/1
+    *Jun  3 12:17:08.850: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
+    *Jun  3 12:17:09.850: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+
+> R1(config)#interface Gi0/1
 
 R1(config-if)#ipv6 address 2001:db8:acad:1::1/64
 
@@ -282,11 +223,14 @@ R1(config-if)#ipv6 address fe80::1 link-local
 
 >R1(config-if)#no shutdown
 
-    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
+    *Jun  3 12:19:01.720: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
+    *Jun  3 12:19:02.748: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
 
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
 
 >R1(config-if)#ipv6 unicast-routing
+
+>R1(config)#exit
+
 
 
 > R1#copy running-config startup-config
@@ -329,7 +273,7 @@ R1(config-if)#ipv6 address fe80::1 link-local
 
 > R2(config)#service password-encryption
 
-> R2(config)#interface GigabitEthernet0/0/0
+> R2(config)#interface Gi0/0
 
 > R2(config-if)#ipv6 address 2001:db8:acad:2::2/64
 
@@ -337,19 +281,22 @@ R1(config-if)#ipv6 address fe80::1 link-local
 
 >R2(config-if)#no shutdown
 
-    %LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to up
+    *Jun  3 12:37:23.722: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
+    *Jun  3 12:37:24.722: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
 
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to up
 
 >R2(config-if)#ipv6 unicast-routing    
 
-> R2(config)#interface GigabitEthernet0/0/1
+> R2(config)#interface Gi0/1
 
 R2(config-if)#ipv6 address 2001:db8:acad:3::1/64
 
 R2(config-if)#ipv6 address fe80::1 link-local
 
 >R2(config-if)#no shutdown
+
+    *Jun  3 12:38:42.897: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
+    *Jun  3 12:38:43.906: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
 
 > R2(config)#exit
 
@@ -359,14 +306,16 @@ R2(config-if)#ipv6 address fe80::1 link-local
 
 R1#ping 2001:db8:acad:2::2
 
+
     Type escape sequence to abort.
-    Sending 5, 100-byte ICMP Echos to 2001:db8:acad:2::2, timeout is 2 seconds:
+    Sending 5, 100-byte ICMP Echos to 2001:DB8:ACAD:2::2, timeout is 2 seconds:
     !!!!!
-    Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+    Success rate is 100 percent (5/5), round-trip min/avg/max = 1/10/34 ms
+
 
 **Проверка назначения адреса SLAAC от R1**
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/2.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/2d.jpg "")
 
 
 **Настройте R1 для предоставления DHCPv6 без состояния для PC-A**
