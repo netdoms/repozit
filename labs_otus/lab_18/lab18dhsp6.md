@@ -279,21 +279,21 @@ R1(config-if)#ipv6 address fe80::1 link-local
 
 > R2(config-if)#ipv6 address fe80::2 link-local
 
->R2(config-if)#no shutdown
+> R2(config-if)#no shutdown
 
     *Jun  3 12:37:23.722: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
     *Jun  3 12:37:24.722: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
 
 
->R2(config-if)#ipv6 unicast-routing    
+> R2(config-if)#ipv6 unicast-routing    
 
 > R2(config)#interface Gi0/1
 
-R2(config-if)#ipv6 address 2001:db8:acad:3::1/64
+> R2(config-if)#ipv6 address 2001:db8:acad:3::1/64
 
-R2(config-if)#ipv6 address fe80::1 link-local
+> R2(config-if)#ipv6 address fe80::1 link-local
 
->R2(config-if)#no shutdown
+> R2(config-if)#no shutdown
 
     *Jun  3 12:38:42.897: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
     *Jun  3 12:38:43.906: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
@@ -304,7 +304,7 @@ R2(config-if)#ipv6 address fe80::1 link-local
 
 **Убедитесь, что маршрутизация работает с помощью пинга адреса**
 
-R1#ping 2001:db8:acad:2::2
+> R1#ping 2001:db8:acad:2::2
 
 
     Type escape sequence to abort.
