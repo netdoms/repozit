@@ -1,4 +1,4 @@
-# Лабораторная работа N8
+# Лабораторная работа N18
 # Протоколы DHCPv4, SLAAC и DHCPv6 
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/1d.jpg "")
