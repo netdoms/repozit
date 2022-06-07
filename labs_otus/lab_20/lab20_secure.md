@@ -97,10 +97,24 @@
 
 >R1(config-if)#no shutdown
 
->R1(config-if)#
+>R1(config-if)#exit
+
+>R1# show ip interface brief
+
 
     *Jun  7 11:26:21.121: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
     *Jun  7 11:26:22.128: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+
+
+    *Jun  7 11:34:42.006: %SYS-5-CONFIG_I: Configured from console by console
+    R1#show ip interface brief
+    Interface                  IP-Address      OK? Method Status                Prot                                                                                        ocol
+    GigabitEthernet0/0         unassigned      YES unset  administratively down down                                                                                        
+    GigabitEthernet0/1         192.168.10.1    YES manual up                    up                                                                                          
+    GigabitEthernet0/2         unassigned      YES unset  administratively down down                                                                                        
+    GigabitEthernet0/3         unassigned      YES unset  administratively down down                                                                                        
+    Loopback0                  10.10.1.1       YES manual up                    up   
+
 
 > R1#copy running-config startup-config
 
@@ -242,7 +256,7 @@
 
 > S1(config)#interface vlan10
 
-> S1(config-if)#ip address 192.168.10.11 255.255.255.0
+> S1(config-if)#ip address 192.168.10.201 255.255.255.0
 
 > S1(config-if)#ip default-gateway 192.168.10.1
 
@@ -256,119 +270,33 @@
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
 
-**VLAN  S1**
 
 > S1(config)#vlan 10
 
-> S1(config-vlan)#name cisco
+> S1(config-vlan)#name Management
 
-> S1(config)#vlan 20
-sho
-> S1(config-vlan)#name Sales
+**VLAN  S1**
 
-> S1(config)#vlan 30
-
-> S1(config-vlan)#name Operations
-
-> S1(config)#vlan 1000
+> S1(config)#vlan 333
 
 > S1(config-vlan)#name native
 
+
 > S1(config-vlan)#vlan 999
 
-> S1(config)#interface range F0/2-4, F0/7-24, G0/1-2
+> S1(config-vlan)#name ParkingLot
 
-> S1(config-if-range)#switchport mode access
+**Транк S1 Gi0/1**
+> S1(config-if)#interface Gi0/1
 
-> S1(config-if-range)#switchport access vlan 999
+> S1(config-if)#switchport trunk encapsulation dot1q
 
-> S1(config-if-range)#shutdown
 
-    %LINK-5-CHANGED: Interface FastEthernet0/2, changed state to administratively down
+> S1(config-if)#Switchport trunk native vlan 333
 
-    %LINK-5-CHANGED: Interface FastEthernet0/3, changed state to administratively down
 
-    %LINK-5-CHANGED: Interface FastEthernet0/4, changed state to administratively down
 
-    %LINK-5-CHANGED: Interface FastEthernet0/7, changed state to administratively down
 
-    %LINK-5-CHANGED: Interface FastEthernet0/8, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/9, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/10, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/11, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/12, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/13, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/14, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/15, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/16, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/17, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/18, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/19, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/20, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/21, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/22, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/23, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface FastEthernet0/24, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
-
-    %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
-
-**S1 интерфейсы**    
-
-> S1(config)#interface f0/6
-
-> S1(config-if)#switchport mode  access
-
-> S1(config-if)#switchport access vlan 20
-
-**Транк S1 f0/5**
-> S1(config-if)#interface f0/5
-
-> S1(config-if)#switchport mode trunk
-
-> S1(config-if)#Switchport trunk native vlan 1000
-
-> S1(config-if)#Switchport trunk allowed vlan 10,20,30,1000
-
-*Что произойдет, если G0/0/1 н
-а R1 будет отключен?*
-
-Ничего
-
-**Транк S1 f0/1**
-
-> S1(config)#interface f0/1
-
-> S1(config-if)#switchport mode trunk
-
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down
-
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to up
-
-> S1(config-if)#switchport mode trunk
-
-> S1(config-if)#Switchport trunk native vlan 1000
-
-    %CDP-4-NATIVE_VLAN_MISMATCH: Native VLAN mismatch discovered on FastEthernet0/1 (1000), with S2 FastEthernet0/1 (1).
-
-> S1(config-if)#Switchport trunk allowed vlan 10,20,30,1000
 
 **НАСТРОЙКА S2** 
 
@@ -376,68 +304,44 @@ sho
 
 > S2(config)#interface vlan10
 
-> S2(config-if)#ip address 192.168.10.12 255.255.255.0
+S2(config)#name Management
+
+> S2(config-if)#ip address 192.168.10.202 255.255.255.0
 
 > S2(config-if)#ip default-gateway 192.168.10.1
 
-> S2(config)#interface vlan10
+> S2(config)#interface vlan 999
 
 > S2(config-if)#no shutdown
 
-    %LINK-5-CHANGED: Interface Vlan1, changed state to up
+> S2(config-vlan)#name ParkingLot
 
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
 
-> S2(config)#interface f0/18
+> S2(config-vlan)#interface Gi0/1
 
-> S2(config-if)#no shutdown
+> S2(config-if)#switchport trunk encapsulation dot1q
 
-    %LINK-5-CHANGED: Interface FastEthernet0/18, changed state to up
+> S2(config-if)#Switchport trunk native vlan 333
 
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/18, changed state to up
 
-**VLAN  S2**
-> S2(config)#vlan 10
 
-> S2(config-vlan)#name cisco
 
-> S2(config)#vlan 20
 
-> S2(config-vlan)#name Sales
 
-> S2(config)#vlan 30
 
-> S2(config-vlan)#name Operations
 
-> S2(config-if)#switchport mode  access
 
-> S2(config-if)#switchport access vlan 30
 
-> S2(config-if)#exit
 
-> S2(config)#vlan 1000
 
-> S2(config-vlan)#name native
 
-> S2(config-vlan)#vlan 999
 
-> S2(config)#interface f0/2-17, f0/19-24, g0/1-2
 
-> S2(config-if-range)#switchport mode access
 
-> S2(config-if-range)#switchport access vlan 999
 
-> S2(config-if-range)#shutdown
 
-**Транк S2 f0/1**
 
-> S2(config)#interface f0/1
 
-> S2(config-if)#switchport mode trunk
-
-> S2(config-if)#Switchport trunk native vlan 1000
-
-> S2(config-if)#Switchport trunk allowed vlan 10,20,30,1000
 
 
 **НАСТРОЙКА МАРШРУТИЗАТОРА S1.**
