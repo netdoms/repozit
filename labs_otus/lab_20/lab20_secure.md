@@ -224,7 +224,7 @@
 
 > S2(config)#service password-encryption
 
-> S2(config)#interface range Gi0/3, Gi1/0-3
+> S2(config)#interface range Gi0/0, Gi0/3, Gi1/0-3
 
 > S2(config-if-range)#switchport mode access
 
@@ -324,12 +324,65 @@ S2(config)#name Management
 > S2(config-if)#Switchport trunk native vlan 333
 
 
+# Отключить согласование DTP F0/1 на S1 и S2. #
+
+> S1(config-if)#switchport mode access
+
+> S1(config-if)#switchport nonegotiate
+
+ S1#show interfaces Gi0/1 switchport | include Negotiation
+
+    Negotiation of Trunking: Off
+
+
+> S2(config-if)#switchport mode access
+
+> S2(config-if)#switchport nonegotiate
+
+> S2#show interfaces Gi0/1 switchport | include Negotiation
+
+    Negotiation of Trunking: Off
+
+# Настройка портов доступа #
+
+> S2(config-if)#interface Gi0/2
+
+
+
+> S2(config-if)#switchport mode access
+
+> S2(config-if)#Switchport trunk allowed vlan 10
+
+S2(config)#vlan 999
+
+> S2(config-if)#interface range Gi0/2-3
+
+
+> S2(config-vlan)#interface range Gi0/0, Gi0/3, Gi1/0-3
+
+> S2(config-if-range)#witchport access allowed vlan 999
+
+> S2(config-if-range)#exit
 
 
 
 
 
 
+
+
+# Конфигурация безопасности порта по умолчанию #
+
+
+|Функции|Настройки по умолчанию|
+|---------------|-------------|
+|Защита портов  ||
+|Max MAC-адресов||
+|Режим проверки на нарушение безопасности ||
+|Aging Time||
+|Aging Type  ||
+|Secure Static Address Aging||
+|Sticky MAC Address||
 
 
 
