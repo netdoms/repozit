@@ -343,7 +343,7 @@ S2(config)#name Management
 
     Negotiation of Trunking: Off
 
-# Настройка портов доступа #
+# Настройка портов доступа S2 #
 
 > S2(config-if)#interface Gi0/2
 
@@ -355,20 +355,42 @@ S2(config)#name Management
 
 S2(config)#vlan 999
 
-> S2(config-if)#interface range Gi0/2-3
-
-
 > S2(config-vlan)#interface range Gi0/0, Gi0/3, Gi1/0-3
 
-> S2(config-if-range)#witchport access allowed vlan 999
+> S2(config-if-range)#switchport access  vlan 999
 
-> S2(config-if-range)#exit
+> S2(config-vlan)#exit
+
+> S2(config)#interface range Gi0/0, Gi0/3, Gi1/0-3
+
+> S2#show interfaces status
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/2.jpg "")
+
+# Настройка портов доступа S1 #
+
+> S1(config-if)#interface Gi0/2
+
+> S1(config-if)#switchport mode access
+
+> S1(config-if)#no shutdown
+
+> S1(config-if)#Switchport trunk allowed vlan 10
+
+> S1(config)#vlan 999
+
+> S1(config-vlan)#interface range Gi0/3, Gi1/0-3
+
+> S1(config-if-range)#switchport access  vlan 999
+
+> S1(config-vlan)#shutdown
+
+> S1(config-if-range)#exit
 
 
+> S1#show interfaces status
 
-
-
-
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/3.jpg "")
 
 
 # Конфигурация безопасности порта по умолчанию #
