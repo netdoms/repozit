@@ -67,11 +67,44 @@
 
 > R1(config)#service password-encryption
 
-> R1(config)#exit
+> R1(config)#ip dhcp excluded-address 192.168.10.1 192.168.10.9
+
+> R1(config)#ip dhcp excluded-address 192.168.10.201 192.168.10.202
+
+> R1(config)#ip dhcp pool Students
+
+> R1(dhcp-config)#network 192.168.10.0 255.255.255.0
+
+> R1(dhcp-config)#default-router 192.168.10.1
+
+> R1(dhcp-config)#domain-name CCNA2.Lab-11.6.1
+
+> R1(dhcp-config)#interface Loopback0
+
+> R1(config-if)#
+
+    Interface Loopback0, changed state to up
+
+>R1(config-if)#ip address 10.10.1.1 255.255.255.0
+
+>R1(config-if)#interface Gig0/1
+
+>R1(config-if)#description Link to S1
+
+>R1(config-if)#ip dhcp relay information trusted
+
+>R1(config-if)#ip address 192.168.10.1 255.255.255.0
+
+>R1(config-if)#no shutdown
+
+>R1(config-if)#
+
+    *Jun  7 11:26:21.121: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
+    *Jun  7 11:26:22.128: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
 
 > R1#copy running-config startup-config
 
-> R1#clock set 15:05:00 27 Mar 2022
+
 
 **Шаг Настройте базовые параметры каждого коммутатора.**
 
@@ -113,11 +146,31 @@
 
 > S1(config)#service password-encryption
 
-> S1(config)#copy running-config startup-config
+> S1(config)#interface range Gi0/3, Gi1/0-3
+
+> S1(config-if-range)#switchport mode access
+
+> S1(config-if-range)#shutdown
+
+    *Jun  7 10:42:06.605: %LINK-5-CHANGED: Interface GigabitEthernet0/3, changed state to administratively down
+    *Jun  7 10:42:06.639: %LINK-5-CHANGED: Interface GigabitEthernet1/0, changed state to administratively down
+    *Jun  7 10:42:06.689: %LINK-5-CHANGED: Interface GigabitEthernet1/1, changed state to administratively down
+    *Jun  7 10:42:06.754: %LINK-5-CHANGED: Interface GigabitEthernet1/2, changed state to administratively down
+    *Jun  7 10:42:06.831: %LINK-5-CHANGED: Interface GigabitEthernet1/3, changed state to administratively down
+    *Jun  7 10:42:07.604: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/3, changed state to down
+    S1(config-if-range)#
+    *Jun  7 10:42:07.644: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to down
+    *Jun  7 10:42:07.691: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to down
+    *Jun  7 10:42:07.754: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to down
+    *Jun  7 10:42:07.833: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/3, changed state to down
+
+> S1(config-if-range)#exit
 
 > S1(config)#exit
 
-> S1#clock set 15:05:00 27 Mar 2022
+> S1#copy running-config startup-config
+
+> S1(config)#exit
 
 **коммутатора базовые параметры S2**
 
@@ -157,17 +210,31 @@
 
 > S2(config)#service password-encryption
 
+> S2(config)#interface range Gi0/3, Gi1/0-3
+
+> S2(config-if-range)#switchport mode access
+
+> S2(config-if-range)#shutdown
+
+    *Jun  7 10:59:24.952: %LINK-5-CHANGED: Interface GigabitEthernet0/3, changed state to administratively down
+    *Jun  7 10:59:25.018: %LINK-5-CHANGED: Interface GigabitEthernet1/0, changed state to administratively down
+    *Jun  7 10:59:25.093: %LINK-5-CHANGED: Interface GigabitEthernet1/1, changed state to administratively down
+    *Jun  7 10:59:25.179: %LINK-5-CHANGED: Interface GigabitEthernet1/2, changed state to administratively down
+    *Jun  7 10:59:25.227: %LINK-5-CHANGED: Interface GigabitEthernet1/3, changed state to administratively down
+    *Jun  7 10:59:25.952: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/3, changed state to down
+    S2(config-if-range)#
+    *Jun  7 10:59:26.019: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to down
+    *Jun  7 10:59:26.095: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to down
+    *Jun  7 10:59:26.530: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to down
+    *Jun  7 10:59:26.534: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/3, changed state to down
+
+> S2(config-if-range)#exit
+
 > S2(config)#exit
 
 > S2#copy running-config startup-config
 
-> S2#clock set 15:05:00 27 Mar 2022
 
-**Настройте узлы ПК.**
-
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/2.jpg "")
-
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/3.jpg "")
 
 **НАСТРОЙКА S1**
 
@@ -437,25 +504,3 @@ sho
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.1000, changed state to up
 
-**Проверьте, работает ли маршрутизация между VLAN**
-
-*Отправьте эхо-запрос с PC-A на шлюз по умолчанию.*
-
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/7.jpg "")
-
-
-Отправьте эхо-запрос с PC-A на PC-B.
-
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/8.jpg "")
-
-Отправьте команду ping с компьютера PC-A на коммутатор S2.
-
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/9.jpg "")
-
-В окне командной строки на PC-B выполните команду tracert на адрес PC-A.
-
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_13/6.jpg "")
-
-Какие промежуточные IP-адреса отображаются в результатах?
-
-    192.168.30.1   192.168.20.3
