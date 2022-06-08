@@ -108,7 +108,7 @@
 
     *Jun  7 11:34:42.006: %SYS-5-CONFIG_I: Configured from console by console
     R1#show ip interface brief
-    Interface                  IP-Address      OK? Method Status                Prot                                                                                        ocol
+    Interface                  IP-Address      OK? Method Status                Prot                                                                                       
     GigabitEthernet0/0         unassigned      YES unset  administratively down down                                                                                        
     GigabitEthernet0/1         192.168.10.1    YES manual up                    up                                                                                          
     GigabitEthernet0/2         unassigned      YES unset  administratively down down                                                                                        
@@ -291,10 +291,14 @@
 
 > S1(config-if)#switchport trunk encapsulation dot1q
 
+> S1(config-if)#switchport mode trunk
 
 > S1(config-if)#Switchport trunk native vlan 333
 
+> S1(config-if)#Switchport trunk allowed vlan 10,999
 
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/4.jpg "")
 
 
 
@@ -310,19 +314,35 @@ S2(config)#name Management
 
 > S2(config-if)#ip default-gateway 192.168.10.1
 
+ S2(config)#interface vlan10
+
+> S2(config-if)#no shutdown
+
+    %LINK-5-CHANGED: Interface Vlan1, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+
 > S2(config)#interface vlan 999
 
 > S2(config-if)#no shutdown
 
 > S2(config-vlan)#name ParkingLot
 
+**Транк S2 Gi0/1**
 
 > S2(config-vlan)#interface Gi0/1
 
 > S2(config-if)#switchport trunk encapsulation dot1q
 
+> S2(config-if)#switchport mode trunk
+
 > S2(config-if)#Switchport trunk native vlan 333
 
+> S2(config-if)#Switchport trunk allowed vlan 10,999
+
+> S2(config-if)#Switchport trunk native vlan 333
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/5.jpg "")
 
 # Отключить согласование DTP F0/1 на S1 и S2. #
 
@@ -347,8 +367,6 @@ S2(config)#name Management
 
 > S2(config-if)#interface Gi0/2
 
-
-
 > S2(config-if)#switchport mode access
 
 > S2(config-if)#Switchport trunk allowed vlan 10
@@ -369,14 +387,6 @@ S2(config)#vlan 999
 
 # Настройка портов доступа S1 #
 
-> S1(config-if)#interface Gi0/2
-
-> S1(config-if)#switchport mode access
-
-> S1(config-if)#no shutdown
-
-> S1(config-if)#Switchport trunk allowed vlan 10
-
 > S1(config)#vlan 999
 
 > S1(config-vlan)#interface range Gi0/3, Gi1/0-3
@@ -386,6 +396,26 @@ S2(config)#vlan 999
 > S1(config-vlan)#shutdown
 
 > S1(config-if-range)#exit
+
+# Настройка портов доступа S1  Gi0/2 #
+
+> S1(config-if)#interface Gi0/2
+
+> S1(config-if)#switchport access  vlan 10
+
+# Настройка портов доступа S1  Gi0/0 #
+
+> S1(config-if)#interface Gi0/0
+
+> S1(config-if)#switchport trunk encapsulation dot1q
+
+> S1(config-if)#switchport mode access
+
+> S1(config-if)#Switchport access native vlan 333
+
+> S1(config-if)#Switchport access vlan 10
+
+> S1(config-if)#Switchport access vlan 999
 
 
 > S1#show interfaces status
