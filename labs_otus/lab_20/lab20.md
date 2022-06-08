@@ -101,7 +101,6 @@
 
 >R1# show ip interface brief
 
-
     *Jun  7 11:26:21.121: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
     *Jun  7 11:26:22.128: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
 
@@ -118,9 +117,7 @@
 
 > R1#copy running-config startup-config
 
-
-
-**Шаг Настройте базовые параметры каждого коммутатора.**
+**Шаг Настройте базовые параметры каждого коммутатора**
 
 **коммутатора базовые параметры S1**
 
@@ -172,7 +169,6 @@
     *Jun  7 10:42:06.754: %LINK-5-CHANGED: Interface GigabitEthernet1/2, changed state to administratively down
     *Jun  7 10:42:06.831: %LINK-5-CHANGED: Interface GigabitEthernet1/3, changed state to administratively down
     *Jun  7 10:42:07.604: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/3, changed state to down
-    S1(config-if-range)#
     *Jun  7 10:42:07.644: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to down
     *Jun  7 10:42:07.691: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to down
     *Jun  7 10:42:07.754: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to down
@@ -237,7 +233,6 @@
     *Jun  7 10:59:25.179: %LINK-5-CHANGED: Interface GigabitEthernet1/2, changed state to administratively down
     *Jun  7 10:59:25.227: %LINK-5-CHANGED: Interface GigabitEthernet1/3, changed state to administratively down
     *Jun  7 10:59:25.952: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/3, changed state to down
-    S2(config-if-range)#
     *Jun  7 10:59:26.019: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to down
     *Jun  7 10:59:26.095: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to down
     *Jun  7 10:59:26.530: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to down
@@ -298,14 +293,9 @@
 
 > S1(config-if)#Switchport trunk allowed vlan 10,999
 
-
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/4.jpg "")
 
-
-
-**НАСТРОЙКА S2** 
-
-**S2**   
+**НАСТРОЙКА S2**   
 
 > S2(config)#interface vlan10
 
@@ -354,7 +344,6 @@ S2(config)#name Management
  S1#show interfaces Gi0/1 switchport | include Negotiation
 
     Negotiation of Trunking: Off
-
 
 > S2(config-if)#switchport mode access
 
@@ -418,16 +407,13 @@ S2(config)#vlan 999
 
 > S1(config-if)#Switchport access vlan 999
 
-
 > S1#show interfaces status
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/3.jpg "")
 
-
 # Конфигурация безопасности порта по умолчанию #
 
 > S1# show port-security interface Gi0/2
-
 
 |Функции|Настройки по умолчанию|
 |---------------|-------------|
@@ -469,9 +455,9 @@ S2(config)#vlan 999
 
 > S2(config-if)#switchport port-security violation protect
 
-S2(config-if)#switchport port-security aging type inactivity
+> S2(config-if)#switchport port-security aging type inactivity
 
-S2(config-if)#switchport port-security mac-address sticky
+> S2(config-if)#switchport port-security mac-address sticky
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/9.jpg "")
 
@@ -479,21 +465,19 @@ S2(config-if)#switchport port-security mac-address sticky
 
 #  Реализовать безопасность DHCP snooping #
 
-S2(config)#ip dhcp snooping
+> S2(config)#ip dhcp snooping
 
+> S2(config)#ip dhcp snooping vlan 10
 
-S2(config)#ip dhcp snooping vlan 10
+> S2(config)#interface gi0/2
 
+> S2(config-if)#ip dhcp snooping limit rate 5
 
-S2(config)#interface gi0/2
+> S2(config)#interface gi0/1
 
-S2(config-if)#ip dhcp snooping limit rate 5
+> S2(config-if)#ip dhcp snooping trust
 
-S2(config)#interface gi0/1
-
-S2(config-if)#ip dhcp snooping trust
-
-S2(config-if)#end
+> S2(config-if)#end
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/11.jpg "")
 
@@ -505,15 +489,15 @@ S2(config-if)#end
 
 S2(config)#spanning-tree portfast  default
 
-S1(config)#spanning-tree portfast default
+> S1(config)#spanning-tree portfast default
 
-S2(config)#interface gi0/2
+> S2(config)#interface gi0/2
 
-S2(config)#spanning-tree bpduguard enable 
+> S2(config)#spanning-tree bpduguard enable 
 
-S2(config)#interface gi0/2
+> S2(config)#interface gi0/2
 
-S1(config)#panning-tree bpduguard enable
+> S1(config)#panning-tree bpduguard enable
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/14.jpg "")
 
@@ -524,13 +508,11 @@ S1(config)#panning-tree bpduguard enable
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/17.jpg "")
 
 
-# Вопросы для повторения#
+# Вопросы для повторения #
 
 С точки зрения безопасности порта на S2, почему нет значения таймера для оставшегося возраста в минутах, когда было сконфигурировано динамическое обучение - sticky?
 
 MAC-адреса  привязываюся к рабочей конфигурации конфигурации автоматически
-
-
 
 Что касается безопасности порта, в чем разница между типом абсолютного устаревания и типом устаревание по неактивности?
 
