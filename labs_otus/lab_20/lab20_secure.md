@@ -230,6 +230,7 @@
 
 > S2(config-if-range)#shutdown
 
+    *Jun  7 10:59:24.952: %LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to administratively down
     *Jun  7 10:59:24.952: %LINK-5-CHANGED: Interface GigabitEthernet0/3, changed state to administratively down
     *Jun  7 10:59:25.018: %LINK-5-CHANGED: Interface GigabitEthernet1/0, changed state to administratively down
     *Jun  7 10:59:25.093: %LINK-5-CHANGED: Interface GigabitEthernet1/1, changed state to administratively down
@@ -425,91 +426,114 @@ S2(config)#vlan 999
 
 # Конфигурация безопасности порта по умолчанию #
 
+> S1# show port-security interface Gi0/2
+
 
 |Функции|Настройки по умолчанию|
 |---------------|-------------|
-|Защита портов  ||
-|Max MAC-адресов||
-|Режим проверки на нарушение безопасности ||
-|Aging Time||
-|Aging Type  ||
-|Secure Static Address Aging||
-|Sticky MAC Address||
+|Защита портов  |Disabled|
+|Max MAC-адресов|1|
+|Режим проверки на нарушение безопасности |Secure-down|
+|Aging Time|0|
+|Aging Type  |Absolute|
+|Secure Static Address Aging|Disabled|
+|Sticky MAC Address|0|
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/6.jpg "")
+
+> S1(config)#interface Gi0/2
+
+> S1(config-if)#switchport port-security
+
+> S1(config-if)#switchport port-security maximum 3
+
+> S1(config-if)#switchport port-security violation restrict
+
+> S1(config-if)#switchport port-security aging time 60
+
+> S1(config-if)#switchport port-security aging type inactivity
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/7.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/8.jpg "")
+
+# Включите безопасность порта для F0 / 18 на S2 #
+
+>S2(config)#interface Gi0/2
+
+> S2(config-if)#switchport port-security
+
+> S2(config-if)#switchport port-security maximum 2
+
+> S2(config-if)#switchport port-security aging time 60
+
+> S2(config-if)#switchport port-security violation protect
+
+S2(config-if)#switchport port-security aging type inactivity
+
+S2(config-if)#switchport port-security mac-address sticky
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/9.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/10.jpg "")
+
+#  Реализовать безопасность DHCP snooping #
+
+S2(config)#ip dhcp snooping
+
+
+S2(config)#ip dhcp snooping vlan 10
+
+
+S2(config)#interface gi0/2
+
+S2(config-if)#ip dhcp snooping limit rate 5
+
+S2(config)#interface gi0/1
+
+S2(config-if)#ip dhcp snooping trust
+
+S2(config-if)#end
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/11.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/12.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/13.jpg "")
+
+# Шаг 6. Реализация PortFast и BPDU Guard #
+
+S2(config)#spanning-tree portfast  default
+
+S1(config)#spanning-tree portfast default
+
+S2(config)#interface gi0/2
+
+S2(config)#spanning-tree bpduguard enable 
+
+S2(config)#interface gi0/2
+
+S1(config)#panning-tree bpduguard enable
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/14.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/15.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/16.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/17.jpg "")
+
+
+# Вопросы для повторения#
+
+С точки зрения безопасности порта на S2, почему нет значения таймера для оставшегося возраста в минутах, когда было сконфигурировано динамическое обучение - sticky?
+
+MAC-адреса  привязываюся к рабочей конфигурации конфигурации автоматически
 
 
 
+Что касается безопасности порта, в чем разница между типом абсолютного устаревания и типом устаревание по неактивности?
 
+Абсолютный - Защищенные адреса порта удаляются по истечении указанного времени устаревания. 
 
-
-
-
-
-
-
-
-
-
-**НАСТРОЙКА МАРШРУТИЗАТОРА S1.**
-
-> R1(config)#interface G0/0/1.10
-
-> R1(config-subif)#encapsulation dot1Q 10
-
-> R1(config-subif)#ip address 192.168.10.1 255.255.255.0
-
-> R1(config-subif)#no shutdown
-
-> R1(config-subif)#exit
-
-> R1(config)#interface G0/0/1.20
-
-> R1(config-subif)#encapsulation dot1Q 20
-
-> R1(config-subif)#ip address 192.168.20.1 255.255.255.0
-
-> R1(config-subif)#no shutdown
-
-> R1(config-subif)#exit
-
-> R1(config)#interface G0/0/1.30
-
-> R1(config-subif)#encapsulation dot1Q 30
-
-> R1(config-subif)#ip address 192.168.30.1 255.255.255.0
-
-> R1(config-subif)#no shutdown
-
-> R1(config-subif)#exit
-
-> R1(config)#interface G0/0/1.1000
-
-> R1(config-subif)#no shutdown
-
-> R1(config-subif)#encapsulation dot1Q 1000 native
-
-> R1(config-subif)#exit
-
-> R1(config)#interface G0/0/1
-
-> R1(config-if)#no shutdown 
-
-    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
-
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
-
-    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1.10, changed state to up
-
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.10, changed state to up
-
-    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1.20, changed state to up
-
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.20, changed state to up
-
-    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1.30, changed state to up
-
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.30, changed state to up
-
-    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1.1000, changed state to up
-
-    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.1000, changed state to up
-
+По таймеру неактивности -безопасные адреса на порту удаляются, только если они неактивны в течение указанного времени
