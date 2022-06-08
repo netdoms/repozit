@@ -299,13 +299,13 @@
 
 > S2(config)#interface vlan10
 
-S2(config)#name Management
+> S2(config)#name Management
 
 > S2(config-if)#ip address 192.168.10.202 255.255.255.0
 
 > S2(config-if)#ip default-gateway 192.168.10.1
 
- S2(config)#interface vlan10
+> S2(config)#interface vlan10
 
 > S2(config-if)#no shutdown
 
@@ -341,7 +341,7 @@ S2(config)#name Management
 
 > S1(config-if)#switchport nonegotiate
 
- S1#show interfaces Gi0/1 switchport | include Negotiation
+> S1#show interfaces Gi0/1 switchport | include Negotiation
 
     Negotiation of Trunking: Off
 
@@ -445,7 +445,7 @@ S2(config)#name Management
 
 # Включите безопасность порта для F0 / 18 на S2 #
 
->S2(config)#interface Gi0/2
+> S2(config)#interface Gi0/2
 
 > S2(config-if)#switchport port-security
 
