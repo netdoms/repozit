@@ -85,21 +85,21 @@
 
     Interface Loopback0, changed state to up
 
->R1(config-if)#ip address 10.10.1.1 255.255.255.0
+> R1(config-if)#ip address 10.10.1.1 255.255.255.0
 
->R1(config-if)#interface Gig0/1
+> R1(config-if)#interface Gig0/1
 
->R1(config-if)#description Link to S1
+> R1(config-if)#description Link to S1
 
->R1(config-if)#ip dhcp relay information trusted
+> R1(config-if)#ip dhcp relay information trusted
 
->R1(config-if)#ip address 192.168.10.1 255.255.255.0
+> R1(config-if)#ip address 192.168.10.1 255.255.255.0
 
->R1(config-if)#no shutdown
+> R1(config-if)#no shutdown
 
->R1(config-if)#exit
+> R1(config-if)#exit
 
->R1# show ip interface brief
+> R1# show ip interface brief
 
     *Jun  7 11:26:21.121: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
     *Jun  7 11:26:22.128: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
@@ -361,7 +361,7 @@ S2(config)#name Management
 
 > S2(config-if)#Switchport trunk allowed vlan 10
 
-S2(config)#vlan 999
+> S2(config)#vlan 999
 
 > S2(config-vlan)#interface range Gi0/0, Gi0/3, Gi1/0-3
 
@@ -487,7 +487,7 @@ S2(config)#vlan 999
 
 # Шаг 6. Реализация PortFast и BPDU Guard #
 
-S2(config)#spanning-tree portfast  default
+> S2(config)#spanning-tree portfast  default
 
 > S1(config)#spanning-tree portfast default
 
@@ -495,7 +495,7 @@ S2(config)#spanning-tree portfast  default
 
 > S2(config)#spanning-tree bpduguard enable 
 
-> S2(config)#interface gi0/2
+> S1(config)#interface gi0/2
 
 > S1(config)#panning-tree bpduguard enable
 
@@ -510,11 +510,11 @@ S2(config)#spanning-tree portfast  default
 
 # Вопросы для повторения #
 
-С точки зрения безопасности порта на S2, почему нет значения таймера для оставшегося возраста в минутах, когда было сконфигурировано динамическое обучение - sticky?
+*С точки зрения безопасности порта на S2, почему нет значения таймера для оставшегося возраста в минутах, когда было сконфигурировано динамическое обучение - sticky?*
 
 MAC-адреса  привязываюся к рабочей конфигурации конфигурации автоматически
 
-Что касается безопасности порта, в чем разница между типом абсолютного устаревания и типом устаревание по неактивности?
+*Что касается безопасности порта, в чем разница между типом абсолютного устаревания и типом устаревание по неактивности?*
 
 Абсолютный - Защищенные адреса порта удаляются по истечении указанного времени устаревания. 
 
