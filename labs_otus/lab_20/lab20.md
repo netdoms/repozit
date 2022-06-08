@@ -103,10 +103,10 @@
 
     *Jun  7 11:26:21.121: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
     *Jun  7 11:26:22.128: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
-
-
     *Jun  7 11:34:42.006: %SYS-5-CONFIG_I: Configured from console by console
-    R1#show ip interface brief
+
+> R1#show ip interface brief
+
     Interface                  IP-Address      OK? Method Status                Prot                                                                                       
     GigabitEthernet0/0         unassigned      YES unset  administratively down down                                                                                        
     GigabitEthernet0/1         192.168.10.1    YES manual up                    up                                                                                          
@@ -244,8 +244,6 @@
 
 > S2#copy running-config startup-config
 
-
-
 **НАСТРОЙКА S1**
 
 **S1 vlan1**
@@ -266,7 +264,6 @@
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
 
-
 > S1(config)#vlan 10
 
 > S1(config-vlan)#name Management
@@ -276,7 +273,6 @@
 > S1(config)#vlan 333
 
 > S1(config-vlan)#name native
-
 
 > S1(config-vlan)#vlan 999
 
@@ -506,7 +502,6 @@
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/16.jpg "")
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/17.jpg "")
-
 
 # Вопросы для повторения #
 
