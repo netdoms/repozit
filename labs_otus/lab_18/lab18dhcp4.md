@@ -83,7 +83,7 @@
 
 > R1#copy running-config startup-config
 
-> R1#clock set 15:05:00 01 june 2022
+
 
 **Шаг Настройте базовые параметры для маршрутизатора R2**
 
@@ -217,4 +217,3 @@
 
 > S2#copy running-config startup-config
 
-> S2#clock set 15:05:00 27 Mar 2022
