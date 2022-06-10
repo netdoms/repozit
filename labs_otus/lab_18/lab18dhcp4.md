@@ -14,8 +14,8 @@
 |      |Gi0/1.1000|-           |-              |-            |
 | R2   |Gi0/0     |10.0.0.2    |255.255.255.252|-            |
 |      |Gi0/1     |192.168.1.97|28             |-            |
-| S1   |VLAN 200  |192.168.1.66|27             |192.168.1.65 |
-| S2   |VLAN 1    |192.168.1.2 |26             |192.168.1.1  |
+| S1   |VLAN 200  |192.168.1.66|27             |192.168.1.1  |
+| S2   |VLAN 1    |192.168.1.2 |26             |192.168.1.97 |
 | PC-A |NIC       |DHCP       |DHCP            |DHCP         |
 | PC-B |NIC       |DHCP       |DHCP            |DHCP         |
 
@@ -223,69 +223,28 @@
 
 #  R1  Gi0/1#
 
-R1(config)#interface Gi0/1.100
+> R1(config)#interface Gi0/1.100
 
-R1(config-subif)#encapsulation dot1Q 100
+> R1(config-subif)#encapsulation dot1Q 100
 
-R1(config-subif)#ip address 192.168.1.1 255.255.255.192
+> R1(config-subif)#ip address 192.168.1.1 255.255.255.192
 
-R1(config-subif)#description customers
+> R1(config-subif)#description customers
 
-R1(config-subif)#no shutdown
+> R1(config-subif)#no shutdown
 
-R1(config-subif)#exit
-
-R1(config)#interface Gi0/1.200
-
-R1(config-subif)#description management
-
-R1(config-subif)#encapsulation dot1Q 200
-
-R1(config-subif)#ip address 192.168.1.65 255.255.255.224
-
-R1(config-subif)#no shutdown
-
-R1(config-subif)#exit
-
-R1(config)#interface Gi0/1.1
-
-R1(config-subif)#encapsulation dot1Q 1
-
-R1(config-subif)#no shutdown
-
-R1(config-subif)#exit
-
-R1(config)#interface Gi0/1.1000
-
-R1(config-subif)#encapsulation dot1Q 1000
-
-R1(config-subif)#description oners
-
-
-R1(config-subif)#no shutdown
-
-R1(config-subif)#exit
-
-
-R1(config)#interface Gi0/1
-
-R1(config-if)#no shutdown
 
     *Jun  9 16:34:20.496: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
     *Jun  9 16:34:21.497: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
 
-R1(config-if)#exit
+> R1(config-if)#exit
 
 
 
 
 # R1  Gi0/0#
 
-R1(config)#interface Gi0/0
-
-R1(config-if)#ip address 10.0.0.1 255.255.255.252
-
-R1(config-if)#no shutdown
+> 
 
     *Jun  9 16:40:36.278: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
     *Jun  9 16:40:37.278: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
@@ -296,33 +255,35 @@ R1(config-if)#no shutdown
 
 # R2  Gi0/0#
 
-R2(config)#interface Gi0/0
+> R2(config)#interface Gi0/0
 
-R2(config-if)#ip address 10.0.0.2 255.255.255.252
+> R2(config-if)#ip address 10.0.0.2 255.255.255.252
 
-R2(config-if)#no shutdown
+> R2(config-if)#no shutdown
 
     *Jun  9 16:55:37.440: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
     *Jun  9 16:55:38.444: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
 
-R2(config-if)#exit
+> R2(config-if)#exit
 
 #  R2  Gi0/1#
 
-R2(config)#interface Gi0/1
+> R2(config)#interface Gi0/1
 
-R2(config-if)#ip address 192.168.1.97 255.255.255.240
+> R2(config-if)#ip address 192.168.1.97 255.255.255.240
 
-R2(config-if)#no shutdown
+> R2(config-if)#no shutdown
 
     *Jun  9 17:00:01.513: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
     *Jun  9 17:00:02.518: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
 
-R2(config-if)#end
+> R2(config-if)#end
 
-# НАСТРОЙКА МАРШРУТов по умолчанию#
+> # НАСТРОЙКА МАРШРУТов по умолчанию#
 
-R2(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.1
+> R2(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.1
 
-R1(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.2
+> R1(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.2
+
+# НАСТРОЙКА S1#
 
