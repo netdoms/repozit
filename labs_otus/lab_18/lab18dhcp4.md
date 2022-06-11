@@ -1,7 +1,7 @@
 # Лабораторная работа N8
 # Протоколы DHCPv4
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/1.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/1d.jpg "")
 
 **Таблица адресации**
 
@@ -9,13 +9,13 @@
 |------|----------|------------|-------------|-------|
 | R1   | Gi0/0    |10.0.0.1    |255.255.255.252|
 |      | Gi0/1    |-           |-              |-            |
-|      |Gi0/1.100 |192.168.1.1 |26             |-            |
-|      |Gi0/1.200 |192.168.1.65|27             |-            |
+|      |Gi0/1.100 |192.168.1.1 |255.255.255.192|-            |
+|      |Gi0/1.200 |192.168.1.65|255.255.255.224|-            |
 |      |Gi0/1.1000|-           |-              |-            |
 | R2   |Gi0/0     |10.0.0.2    |255.255.255.252|-            |
-|      |Gi0/1     |192.168.1.97|28             |-            |
-| S1   |VLAN 200  |192.168.1.66|27             |192.168.1.1  |
-| S2   |VLAN 1    |192.168.1.2 |26             |192.168.1.97 |
+|      |Gi0/1     |192.168.1.97|255.255.255.240|-            |
+| S1   |VLAN 200  |192.168.1.66|255.255.255.224|192.168.1.65 |
+| S2   |VLAN 1    |192.168.1.2 |255.255.255.240|192.168.1.97 |
 | PC-A |NIC       |DHCP       |DHCP            |DHCP         |
 | PC-B |NIC       |DHCP       |DHCP            |DHCP         |
 
@@ -223,6 +223,8 @@
 
 #  R1  Gi0/1#
 
+
+
 > R1(config)#interface Gi0/1.100
 
 > R1(config-subif)#encapsulation dot1Q 100
@@ -240,14 +242,48 @@
 > R1(config-if)#exit
 
 
+> R1(config)#interface Gi0/1.200
+
+> R1(config-subif)#encapsulation dot1Q 200
+
+> R1(config-subif)#ip address 192.168.1.65 255.255.255.224
+
+> R1(config-subif)#description customers
+
+> R1(config-subif)#no shutdown
+
+> R1(config-subif)#exit
+
+
+> R1(config)#interface Gi0/1.1000
+
+> R1(config-subif)#no shutdown
+
+> R1(config-subif)#encapsulation dot1Q 1000 native
+
+> R1(config-subif)#description native
+
+> R1(config-subif)#exit
+
 
 
 # R1  Gi0/0#
 
-> 
+> R1(config)#interface Gi0/0
 
-    *Jun  9 16:40:36.278: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
+> R1(config-if)#ip address 10.0.0.1 255.255.255.252
+
+> R1(config-if)#no shutdown
+
+>     *Jun  9 16:40:36.278: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
     *Jun  9 16:40:37.278: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+
+> R1(config-if)#exit
+
+
+
+
+
 
 
 
@@ -285,5 +321,203 @@
 
 > R1(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.2
 
+    R2#ping 10.0.0.1
+    Type escape sequence to abort.
+    Sending 5, 100-byte ICMP Echos to 10.0.0.1, timeout is 2 seconds:
+    !!!!!
+    Success rate is 100 percent (5/5), round-trip min/avg/max = 4/8/12 ms
+
+
+# НАСТРОЙКА S2#
+
+
+
+# Gi0/3 S-PC#
+
+S2(config-if)#interface Gi0/3
+
+S2(config-if)#switchport mode access
+
+S2(config-if)#Switchport trunk allowed vlan 1
+
+S2(config-if)#no shutdown
+
+S2(config-if)#exit
+
+# S2 Vlan #
+
+S2(config)#interface vlan1
+
+    *Jun 10 09:12:14.500: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to down
+
+S2(config-if)#ip address 192.168.1.98 255.255.255.240
+
+S2(config-if)#ip default-gateway 192.168.10.97
+
+S2(config-if)#no shutdown
+
+
+
+# S2 shutdown port#
+
+S2(config)#interface range Gi0/0-1, Gi1/0-3
+
+S2(config-if-range)#switchport trunk encapsulation dot1q
+
+S2(config-if-range)#switchport mode access
+
+S2(config-if)#shutdown
+
+    *Jun 10 09:11:23.391: %LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to administratively down
+    *Jun 10 09:11:23.474: %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
+    *Jun 10 09:11:23.543: %LINK-5-CHANGED: Interface GigabitEthernet1/0, changed state to administratively down
+    *Jun 10 09:11:23.658: %LINK-5-CHANGED: Interface GigabitEthernet1/1, changed state to administratively down
+    *Jun 10 09:11:23.732: %LINK-5-CHANGED: Interface GigabitEthernet1/2, changed state to administratively down
+    *Jun 10 09:11:23.799: %LINK-5-CHANGED: Interface GigabitEthernet1/3, changed state to administratively down
+    *Jun 10 09:11:24.393: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
+    S2(config-if-range)#
+    *Jun 10 09:11:24.474: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
+    *Jun 10 09:11:24.542: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to down
+    *Jun 10 09:11:24.686: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to down
+    *Jun 10 09:11:24.735: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to down
+    *Jun 10 09:11:24.804: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/3, changed state to down
+
+
+
+ 
+
+# Gi0/2 S-Route #
+
+S2(config)#interface Gi0/2
+
+S2(config-if)#switchport trunk encapsulation dot1q
+
+
+S2(config-if)#switchport mode trunk
+
+
+
+S2(config-if)#Switchport trunk native vlan 1000
+
+S2(config-if)#Switchport trunk allowed vlan 1,1000
+
+
+
 # НАСТРОЙКА S1#
 
+#  Vlan #
+
+S1(config)#interface vlan 200
+
+S1(config-if)#ip address 192.168.1.66 255.255.255.224
+
+
+    *Jun 10 08:26:26.983: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan200, changed state to down
+
+
+S1(config-if)#ip default-gateway 192.168.1.65
+
+S1(config-if)#no shutdown
+
+
+S1(config)# vlan 999
+
+S1(config-vlan)#name ParkingLot
+
+
+S1(config)# vlan 100
+
+S1(config-vlan)#name customers
+
+S1(config)# vlan 200
+
+S1(config-vlan)#name Management
+
+# Gi0/2 S-comp Gi0/3#
+
+S1(config)#interface Gi0/3
+
+S1(config-if)#switchport mode access
+
+S1(config-if)#Switchport access vlan 200
+
+S1(config-vlan)#exit
+
+S1(config-if)#no shutdown
+
+S1(config)#exit
+
+S1(config-if)#shutdown
+
+S1(config)#interface vlan 999
+
+S2(config-vlan)#name ParkingLot
+
+# Gi0/2 S-Route Gi0/2#
+
+S1(config)#interface Gi0/2
+
+S1(config-if)#switchport trunk encapsulation dot1q
+
+S1(config-if)#switchport mode trunk
+
+S1(config-if)#Switchport trunk native vlan 1000
+
+S1(config-if)#Switchport trunk allowed vlan 100,200,999,1000
+
+S1(config-if)#exit
+
+
+S1(config)#interface range Gi0/0-1, Gi1/0-3
+
+S1(config-if-range)#shutdown
+
+
+    *Jun 10 08:54:16.686: %LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to administratively down
+    *Jun 10 08:54:16.764: %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
+    *Jun 10 08:54:16.816: %LINK-5-CHANGED: Interface GigabitEthernet1/0, changed state to administratively down
+    *Jun 10 08:54:16.991: %LINK-5-CHANGED: Interface GigabitEthernet1/1, changed state to administratively down
+    *Jun 10 08:54:17.064: %LINK-5-CHANGED: Interface GigabitEthernet1/2, changed state to administratively down
+    *Jun 10 08:54:17.125: %LINK-5-CHANGED: Interface GigabitEthernet1/3, changed state to administratively down
+    *Jun 10 08:54:17.688: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
+    S1(config-if-range)#
+    *Jun 10 08:54:17.771: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
+    *Jun 10 08:54:17.818: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to down
+    *Jun 10 08:54:18.254: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to down
+    *Jun 10 08:54:18.257: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to down
+    *Jun 10 08:54:18.260: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/3, changed state to down
+
+    S1(config-if-range)#switchport access vlan 999
+
+S1(config-if-range)#end
+
+*Почему интерфейс F0/5 указан в VLAN 1?*
+
+
+
+
+
+
+
+*Какой IP-адрес был бы у ПК, если бы он был подключен к сети с помощью DHCP?*
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/3.jpg "")
+
+# Настройте R1 с пулами DHCPv4 для двух поддерживаемых подсетей. #
+
+
+R1(config)#ip dhcp excluded-address 192.168.1.1 192.168.1.5
+
+R1(config)#ip dhcp excluded-address 192.168.1.60 192.168.1.65
+
+R1(config)#ip dhcp excluded-address 192.168.1.97 192.168.1.102
+
+R1(config)#ip dhcp pool A-1
+
+R1(config)#network 192.168.1.0 255.255.255.192
+
+R1(config)#default-router 192.168.1.1
+
+R1(config)#domain-name CCNA-lab.com
+
+R1(config)#end
