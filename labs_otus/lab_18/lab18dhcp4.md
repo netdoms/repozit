@@ -225,7 +225,7 @@
 
 
 
-> R1(config)#interface Gi0/1.100
+> R1(config)#interface Gi0/0/1.100
 
 > R1(config-subif)#encapsulation dot1Q 100
 
@@ -235,14 +235,11 @@
 
 > R1(config-subif)#no shutdown
 
-
-    *Jun  9 16:34:20.496: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
-    *Jun  9 16:34:21.497: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
-
 > R1(config-if)#exit
 
 
-> R1(config)#interface Gi0/1.200
+
+> R1(config)#interface Gi0/0/1.200
 
 > R1(config-subif)#encapsulation dot1Q 200
 
@@ -255,7 +252,7 @@
 > R1(config-subif)#exit
 
 
-> R1(config)#interface Gi0/1.1000
+> R1(config)#interface Gi0/0/1.1000
 
 > R1(config-subif)#no shutdown
 
@@ -265,18 +262,50 @@
 
 > R1(config-subif)#exit
 
+R1(config)#interface Gi0/0/1
+
+R1(config-if)#no shutdown
+
+R1(config-if)#
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1.100, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.100, changed state to up
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1.200, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.200, changed state to up
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1.1000, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1.1000, changed state to up
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # R1  Gi0/0#
 
-> R1(config)#interface Gi0/0
+> R1(config)#interface Gi0/0/0
 
 > R1(config-if)#ip address 10.0.0.1 255.255.255.252
 
 > R1(config-if)#no shutdown
 
->     *Jun  9 16:40:36.278: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
-    *Jun  9 16:40:37.278: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to up
 
 > R1(config-if)#exit
 
@@ -291,27 +320,29 @@
 
 # R2  Gi0/0#
 
-> R2(config)#interface Gi0/0
+> R2(config)#interface Gi0/0/0
 
 > R2(config-if)#ip address 10.0.0.2 255.255.255.252
 
 > R2(config-if)#no shutdown
 
-    *Jun  9 16:55:37.440: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
-    *Jun  9 16:55:38.444: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/0, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/0, changed state to up
 
 > R2(config-if)#exit
 
 #  R2  Gi0/1#
 
-> R2(config)#interface Gi0/1
+> R2(config)#interface Gi0/0/1
 
 > R2(config-if)#ip address 192.168.1.97 255.255.255.240
 
 > R2(config-if)#no shutdown
 
-    *Jun  9 17:00:01.513: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
-    *Jun  9 17:00:02.518: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+%LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
 
 > R2(config-if)#end
 
@@ -332,9 +363,9 @@
 
 
 
-# Gi0/3 S-PC#
+# fa0/18 S-PC#
 
-S2(config-if)#interface Gi0/3
+S2(config-if)#interface fa0/18
 
 S2(config-if)#switchport mode access
 
@@ -344,6 +375,18 @@ S2(config-if)#no shutdown
 
 S2(config-if)#exit
 
+S2(config)#vlan 1
+S2(config-vlan)#interface fa0/18
+S2(config-if)# no shutdown
+
+S2(config-if)#
+%LINK-5-CHANGED: Interface FastEthernet0/18, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/18, changed state to up
+
+
+
+
 # S2 Vlan #
 
 S2(config)#interface vlan1
@@ -352,9 +395,37 @@ S2(config)#interface vlan1
 
 S2(config-if)#ip address 192.168.1.98 255.255.255.240
 
-S2(config-if)#ip default-gateway 192.168.10.97
+S2(config-if)#ip default-gateway 192.168.1.97
 
 S2(config-if)#no shutdown
+
+S2(config-if)#exit
+
+S2(config)#interface vlan1
+
+S2(config-if)#no shutdown
+
+    %LINK-5-CHANGED: Interface Vlan1, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+
+
+# S2 shutdown port f0/5#
+
+S1(config)#interface f0/5
+S1(config-if)#switchport mode trunk
+S1(config-if)#Switchport trunk native vlan 1000
+S1(config-if)#switchport trunk allowed vlan 1,1000
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -386,22 +457,6 @@ S2(config-if)#shutdown
 
  
 
-# Gi0/2 S-Route #
-
-S2(config)#interface Gi0/2
-
-S2(config-if)#switchport trunk encapsulation dot1q
-
-
-S2(config-if)#switchport mode trunk
-
-
-
-S2(config-if)#Switchport trunk native vlan 1000
-
-S2(config-if)#Switchport trunk allowed vlan 1,1000
-
-
 
 # НАСТРОЙКА S1#
 
@@ -411,13 +466,19 @@ S1(config)#interface vlan 200
 
 S1(config-if)#ip address 192.168.1.66 255.255.255.224
 
-
-    *Jun 10 08:26:26.983: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan200, changed state to down
-
-
 S1(config-if)#ip default-gateway 192.168.1.65
 
 S1(config-if)#no shutdown
+
+S1(config)#vlan 200
+
+S1(config-vlan)#
+
+    %LINK-5-CHANGED: Interface Vlan200, changed state to up
+
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan200, changed state to up
+
+
 
 
 S1(config)# vlan 999
@@ -453,43 +514,7 @@ S1(config)#interface vlan 999
 
 S2(config-vlan)#name ParkingLot
 
-# Gi0/2 S-Route Gi0/2#
 
-S1(config)#interface Gi0/2
-
-S1(config-if)#switchport trunk encapsulation dot1q
-
-S1(config-if)#switchport mode trunk
-
-S1(config-if)#Switchport trunk native vlan 1000
-
-S1(config-if)#Switchport trunk allowed vlan 100,200,999,1000
-
-S1(config-if)#exit
-
-
-S1(config)#interface range Gi0/0-1, Gi1/0-3
-
-S1(config-if-range)#shutdown
-
-
-    *Jun 10 08:54:16.686: %LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to administratively down
-    *Jun 10 08:54:16.764: %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
-    *Jun 10 08:54:16.816: %LINK-5-CHANGED: Interface GigabitEthernet1/0, changed state to administratively down
-    *Jun 10 08:54:16.991: %LINK-5-CHANGED: Interface GigabitEthernet1/1, changed state to administratively down
-    *Jun 10 08:54:17.064: %LINK-5-CHANGED: Interface GigabitEthernet1/2, changed state to administratively down
-    *Jun 10 08:54:17.125: %LINK-5-CHANGED: Interface GigabitEthernet1/3, changed state to administratively down
-    *Jun 10 08:54:17.688: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
-    S1(config-if-range)#
-    *Jun 10 08:54:17.771: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
-    *Jun 10 08:54:17.818: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to down
-    *Jun 10 08:54:18.254: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to down
-    *Jun 10 08:54:18.257: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to down
-    *Jun 10 08:54:18.260: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/3, changed state to down
-
-    S1(config-if-range)#switchport access vlan 999
-
-S1(config-if-range)#end
 
 *Почему интерфейс F0/5 указан в VLAN 1?*
 
@@ -508,16 +533,31 @@ S1(config-if-range)#end
 
 R1(config)#ip dhcp excluded-address 192.168.1.1 192.168.1.5
 
-R1(config)#ip dhcp excluded-address 192.168.1.60 192.168.1.65
-
-R1(config)#ip dhcp excluded-address 192.168.1.97 192.168.1.102
-
 R1(config)#ip dhcp pool A-1
 
 R1(config)#network 192.168.1.0 255.255.255.192
+
+R1(config)#dns-server 192.168.1.1
 
 R1(config)#default-router 192.168.1.1
 
 R1(config)#domain-name CCNA-lab.com
 
 R1(config)#end
+
+
+R1(config)#ip dhcp excluded-address 192.168.1.97 192.168.1.100
+
+
+
+R1(config)#ip dhcp pool C-1
+
+R1(config)#domain-name R2_Client_LAN 
+
+R1(config)#network 192.168.1.0 255.255.255.240
+
+R1(config)#default-router 192.168.1.97
+
+R1(config)#dns-server 192.168.1.97
+R1(config)#end
+
