@@ -323,16 +323,16 @@
 
 > R2(config-if)#no shutdown
 
-%LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
+    %LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
 
-%LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
+    %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
 
 > R2(config-if)#end
 
 ##########################################################################
 
 
-> # НАСТРОЙКА МАРШРУТов по умолчанию#
+ # НАСТРОЙКА МАРШРУТов по умолчанию#
 
 > R2(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.1
 
@@ -352,21 +352,21 @@
 
 # S2 Vlan #
 
-S2(config)#interface vlan1
+> S2(config)#interface vlan1
 
     *Jun 10 09:12:14.500: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to down
 
-S2(config-if)#ip address 192.168.1.98 255.255.255.240
+> S2(config-if)#ip address 192.168.1.98 255.255.255.240
 
-S2(config-if)#ip default-gateway 192.168.1.97
+> S2(config-if)#ip default-gateway 192.168.1.97
 
-S2(config-if)#no shutdown
+> S2(config-if)#no shutdown
 
-S2(config-if)#exit
+> S2(config-if)#exit
 
-S2(config)#interface vlan1
+> S2(config)#interface vlan1
 
-S2(config-if)#no shutdown
+> S2(config-if)#no shutdown
 
     %LINK-5-CHANGED: Interface Vlan1, changed state to up
 
@@ -377,71 +377,66 @@ S2(config-if)#no shutdown
 
 # S2    ОТКЛЮЧЕНИЕ НЕИСПОЛЬЗОВАННЫХ ПОРТОВ #
 
-S2(config)#S2(config)#interface range f0/1-4, f0/6-17, f0/19-24, g0/1-2
+> S2(config)#S2(config)#interface range f0/1-4, f0/6-17, f0/19-24, g0/1-2
 
-S2(config-if-range)#switchport mode access
+> S2(config-if-range)#switchport mode access
 
-S2(config-if-range)#shutdown
-
-
-
-
-
+> S2(config-if-range)#shutdown
 
 
 # НАСТРОЙКА КОММУТАТОРА S1#
 
 #  Vlan #
 
-S1(config)#interface vlan 200
+> S1(config)#interface vlan 200
 
-S1(config-if)#ip address 192.168.1.66 255.255.255.224
+> S1(config-if)#ip address 192.168.1.66 255.255.255.224
 
-S1(config-if)#ip default-gateway 192.168.1.65
+> S1(config-if)#ip default-gateway 192.168.1.65
 
-S1(config-if)#no shutdown
+> S1(config-if)#no shutdown
 
-S1(config)#vlan 200
+> S1(config)#vlan 200
 
-S1(config-vlan)#
+> S1(config-vlan)#
 
     %LINK-5-CHANGED: Interface Vlan200, changed state to up
 
     %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan200, changed state to up
 
 
-S1(config)# vlan 999
+> S1(config)# vlan 999
 
-S1(config-vlan)#name ParkingLot
+> S1(config-vlan)#name ParkingLot
 
 
-S1(config)# vlan 100
+> S1(config)# vlan 100
 
-S1(config-vlan)#name customers
+> S1(config-vlan)#name customers
 
-S1(config)# vlan 200
+> S1(config)# vlan 200
 
-S1(config-vlan)#name Management
+> S1(config-vlan)#name Management
 
 # S1 shutdown port f0/5#
 
-S1(config)#interface f0/5
+> S1(config)#interface f0/5
 
-S1(config-if)#switchport mode trunk
+> S1(config-if)#switchport mode trunk
 
-S1(config-if)#Switchport trunk native vlan 1000
+> S1(config-if)#Switchport trunk native vlan 1000
 
-S1(config-if)#switchport trunk allowed vlan 1,1000
+> S1(config-if)#switchport trunk allowed vlan 1,1000
 
 # S1 ОТКЛЮЧЕНИЕ НЕ ИСПОЛЬЗУЕМЫХ ПОРТОВ#
 
-S1(config)#interface range F0/2-4, F0/7-24, G0/1-2
+> S1(config)#interface range F0/2-4, F0/7-24, G0/1-2
 
-S1(config-if-range)#switchport mode access
+> S1(config-if-range)#switchport mode access
 
-S1(config-if-range)#switchport access vlan 999
+> S1(config-if-range)#switchport access vlan 999
 
-S1(config-if-range)#shutdown
+> S1(config-if-range)#shutdown
 
     %LINK-5-CHANGED: Interface FastEthernet0/2, changed state to administratively down
 
@@ -504,39 +499,39 @@ S1(config-if-range)#shutdown
 # Настройте R1 с пулами DHCPv4 для двух поддерживаемых подсетей. #
 
 
-R1(config)#ip dhcp excluded-address 192.168.1.1 192.168.1.5
+> R1(config)#ip dhcp excluded-address 192.168.1.1 192.168.1.5
 
-R1(config)#ip dhcp pool A-1
+> R1(config)#ip dhcp pool A-1
 
-R1(config)#network 192.168.1.0 255.255.255.192
+> R1(config)#network 192.168.1.0 255.255.255.192
 
-R1(config)#dns-server 192.168.1.1
+> R1(config)#dns-server 192.168.1.1
 
-R1(config)#default-router 192.168.1.1
+> R1(config)#default-router 192.168.1.1
 
-R1(config)#domain-name CCNA-lab.com
+> R1(config)#domain-name CCNA-lab.com
 
-R1(config)#lease 2 12 30
+> R1(config)#lease 2 12 30
 
 *lease This command was introduced. Release 12.3(8)T*
 
-R1(config)#end
+> R1(config)#end
 
 
 
-R1(config)#ip dhcp pool C-1
+> R1(config)#ip dhcp pool C-1
 
-R1(config)#domain-name R2_Client_LAN 
+> R1(config)#domain-name R2_Client_LAN 
 
-R1(config)#ip dhcp excluded-address 192.168.1.97 192.168.1.100
+> R1(config)#ip dhcp excluded-address 192.168.1.97 192.168.1.100
 
-R1(config)#network 192.168.1.96 255.255.255.240
+> R1(config)#network 192.168.1.96 255.255.255.240
 
-R1(config)#default-router 192.168.1.97
+> R1(config)#default-router 192.168.1.97
 
-R1(config)#dns-server 192.168.1.97
+> R1(config)#dns-server 192.168.1.97
 
-R1(config)#lease 2 12 30
+> R1(config)#lease 2 12 30
 
 *lease This command was introduced. Release 12.3(8)T*
 
@@ -559,15 +554,13 @@ R1(config)#end
 # Настройка и проверка DHCP-ретрансляции на R2 # 
 
 
-R2(config)#interface gi0/0/1
+> R2(config)#interface gi0/0/1
 
-R2(config-if)#ip helper-address 10.0.0.1
+> R2(config-if)#ip helper-address 10.0.0.1
 
-R2(config-if)#end
+> R2(config-if)#end
 
-R2#end
-
-R2#copy running-config startup-config
+> R2#copy running-config startup-config
 
 # Попытка получить IP-адрес от DHCP на PC-B #
 
