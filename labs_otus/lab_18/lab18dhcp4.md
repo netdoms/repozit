@@ -171,7 +171,7 @@
 
 > S1(config)#exit
 
-> S1(config)#copy running-config startup-config
+> S1#copy running-config startup-config
 
 > S1#clock set 15:05:00 27 Mar 2022
 
@@ -221,9 +221,7 @@
 
 # НАСТРОЙКА МАРШРУТИЗАТОРА R1#
 
-#  R1  Gi0/1#
-
-
+#  R1  Gi0/0/1#
 
 > R1(config)#interface Gi0/0/1.100
 
@@ -262,11 +260,12 @@
 
 > R1(config-subif)#exit
 
-R1(config)#interface Gi0/0/1
+> R1(config)#interface Gi0/0/1
 
-R1(config-if)#no shutdown
+>R1(config-if)#no shutdown
 
-R1(config-if)#
+> R1(config-if)#
+
 
     %LINK-5-CHANGED: Interface GigabitEthernet0/0/1, changed state to up
 
@@ -286,18 +285,7 @@ R1(config-if)#
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-# R1  Gi0/0#
+# R1  Gi0/0/0#
 
 > R1(config)#interface Gi0/0/0
 
@@ -309,16 +297,11 @@ R1(config-if)#
 
 > R1(config-if)#exit
 
-
-
-
-
-
-
+#####################################################################################
 
 # НАСТРОЙКА МАРШРУТИЗАТОРА R2#
 
-# R2  Gi0/0#
+# R2  Gi0/0/0#
 
 > R2(config)#interface Gi0/0/0
 
@@ -332,7 +315,7 @@ R1(config-if)#
 
 > R2(config-if)#exit
 
-#  R2  Gi0/1#
+#  R2  Gi0/0/1#
 
 > R2(config)#interface Gi0/0/1
 
@@ -345,6 +328,9 @@ R1(config-if)#
 %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0/1, changed state to up
 
 > R2(config-if)#end
+
+##########################################################################
+
 
 > # НАСТРОЙКА МАРШРУТов по умолчанию#
 
@@ -359,33 +345,10 @@ R1(config-if)#
     Success rate is 100 percent (5/5), round-trip min/avg/max = 4/8/12 ms
 
 
-# НАСТРОЙКА S2#
+##########################################################################    
 
 
-
-# fa0/18 S-PC#
-
-S2(config-if)#interface fa0/18
-
-S2(config-if)#switchport mode access
-
-S2(config-if)#Switchport trunk allowed vlan 1
-
-S2(config-if)#no shutdown
-
-S2(config-if)#exit
-
-S2(config)#vlan 1
-S2(config-vlan)#interface fa0/18
-S2(config-if)# no shutdown
-
-S2(config-if)#
-%LINK-5-CHANGED: Interface FastEthernet0/18, changed state to up
-
-%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/18, changed state to up
-
-
-
+# НАСТРОЙКА КОММУТАТОРА S2#
 
 # S2 Vlan #
 
@@ -410,55 +373,23 @@ S2(config-if)#no shutdown
     %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
 
 
-# S2 shutdown port f0/5#
+##########################################################################
 
-S1(config)#interface f0/5
-S1(config-if)#switchport mode trunk
-S1(config-if)#Switchport trunk native vlan 1000
-S1(config-if)#switchport trunk allowed vlan 1,1000
+# S2    ОТКЛЮЧЕНИЕ НЕИСПОЛЬЗОВАННЫХ ПОРТОВ #
 
-
-
-
-
-
-
-
-
-
-
-
-
-# S2 shutdown port#
-
-S2(config)#interface range Gi0/0-1, Gi1/0-3
-
-S2(config-if-range)#switchport trunk encapsulation dot1q
+S2(config)#S2(config)#interface range f0/1-4, f0/6-17, f0/19-24, g0/1-2
 
 S2(config-if-range)#switchport mode access
 
-S2(config-if)#shutdown
-
-    *Jun 10 09:11:23.391: %LINK-5-CHANGED: Interface GigabitEthernet0/0, changed state to administratively down
-    *Jun 10 09:11:23.474: %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
-    *Jun 10 09:11:23.543: %LINK-5-CHANGED: Interface GigabitEthernet1/0, changed state to administratively down
-    *Jun 10 09:11:23.658: %LINK-5-CHANGED: Interface GigabitEthernet1/1, changed state to administratively down
-    *Jun 10 09:11:23.732: %LINK-5-CHANGED: Interface GigabitEthernet1/2, changed state to administratively down
-    *Jun 10 09:11:23.799: %LINK-5-CHANGED: Interface GigabitEthernet1/3, changed state to administratively down
-    *Jun 10 09:11:24.393: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to down
-    S2(config-if-range)#
-    *Jun 10 09:11:24.474: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to down
-    *Jun 10 09:11:24.542: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/0, changed state to down
-    *Jun 10 09:11:24.686: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/1, changed state to down
-    *Jun 10 09:11:24.735: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/2, changed state to down
-    *Jun 10 09:11:24.804: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet1/3, changed state to down
+S2(config-if-range)#shutdown
 
 
 
- 
 
 
-# НАСТРОЙКА S1#
+
+
+# НАСТРОЙКА КОММУТАТОРА S1#
 
 #  Vlan #
 
@@ -479,8 +410,6 @@ S1(config-vlan)#
     %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan200, changed state to up
 
 
-
-
 S1(config)# vlan 999
 
 S1(config-vlan)#name ParkingLot
@@ -494,39 +423,83 @@ S1(config)# vlan 200
 
 S1(config-vlan)#name Management
 
-# Gi0/2 S-comp Gi0/3#
+# S1 shutdown port f0/5#
 
-S1(config)#interface Gi0/3
+S1(config)#interface f0/5
 
-S1(config-if)#switchport mode access
+S1(config-if)#switchport mode trunk
 
-S1(config-if)#Switchport access vlan 200
+S1(config-if)#Switchport trunk native vlan 1000
 
-S1(config-vlan)#exit
+S1(config-if)#switchport trunk allowed vlan 1,1000
 
-S1(config-if)#no shutdown
+# S1 ОТКЛЮЧЕНИЕ НЕ ИСПОЛЬЗУЕМЫХ ПОРТОВ#
 
-S1(config)#exit
+S1(config)#interface range F0/2-4, F0/7-24, G0/1-2
 
-S1(config-if)#shutdown
+S1(config-if-range)#switchport mode access
 
-S1(config)#interface vlan 999
+S1(config-if-range)#switchport access vlan 999
 
-S2(config-vlan)#name ParkingLot
+S1(config-if-range)#shutdown
 
+    %LINK-5-CHANGED: Interface FastEthernet0/2, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/3, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/4, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/7, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/8, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/9, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/10, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/11, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/12, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/13, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/14, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/15, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/16, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/17, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/18, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/19, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/20, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/21, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/22, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/23, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface FastEthernet0/24, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/1, changed state to administratively down
+
+    %LINK-5-CHANGED: Interface GigabitEthernet0/2, changed state to administratively down
 
 
 *Почему интерфейс F0/5 указан в VLAN 1?*
 
-
-
-
-
-
+Порт в состоянии trunk
 
 *Какой IP-адрес был бы у ПК, если бы он был подключен к сети с помощью DHCP?*
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/3.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/2.jpg "")
+
+
+##########################################################################
 
 # Настройте R1 с пулами DHCPv4 для двух поддерживаемых подсетей. #
 
@@ -543,10 +516,11 @@ R1(config)#default-router 192.168.1.1
 
 R1(config)#domain-name CCNA-lab.com
 
+R1(config)#lease 2 12 30
+
+*lease This command was introduced. Release 12.3(8)T*
+
 R1(config)#end
-
-
-R1(config)#ip dhcp excluded-address 192.168.1.97 192.168.1.100
 
 
 
@@ -554,10 +528,50 @@ R1(config)#ip dhcp pool C-1
 
 R1(config)#domain-name R2_Client_LAN 
 
-R1(config)#network 192.168.1.0 255.255.255.240
+R1(config)#ip dhcp excluded-address 192.168.1.97 192.168.1.100
+
+R1(config)#network 192.168.1.96 255.255.255.240
 
 R1(config)#default-router 192.168.1.97
 
 R1(config)#dns-server 192.168.1.97
+
+R1(config)#lease 2 12 30
+
+*lease This command was introduced. Release 12.3(8)T*
+
 R1(config)#end
 
+# Проверка конфигурации сервера DHCPv4 #
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/3.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/4.jpg "")
+
+
+# Попытка получить IP-адрес от DHCP на PC-A #
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/5.jpg "")
+
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/6.jpg "")
+
+# Настройка и проверка DHCP-ретрансляции на R2 # 
+
+
+R2(config)#interface gi0/0/1
+
+R2(config-if)#ip helper-address 10.0.0.1
+
+R2(config-if)#end
+
+R2#end
+
+R2#copy running-config startup-config
+
+# Попытка получить IP-адрес от DHCP на PC-B #
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/7.jpg "")
+
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/4.jpg "")
