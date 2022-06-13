@@ -1,7 +1,7 @@
 # Лабораторная работа N8
 # Протоколы DHCPv4
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/1d.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/1.jpg "")
 
 **Таблица адресации**
 
@@ -23,10 +23,10 @@
 
 |VLan|Имя |Назначенный интерфейс|
 |------|--------------|---------|
-| 1    | нет       |S2 Gi1/3    |
-|100   |Клиенты    |S1:Gi1/2    |
+| 1    | нет       |S2: F0/18    |
+|100   |Клиенты    |S1: F0/6     |
 |200   |Управление |S1:VLAN 200 |
-|999   |Parking_Lot |S1: Gi1/0-3 Gi0/1, Gi0/3 |
+|999   |Parking_Lot |S1: F0/1-4, F0/7-24, G0/1-2 |
 |1000  |Собственная  |-|
 
 **Задачи**
@@ -219,9 +219,9 @@
 
 > S2#copy running-config startup-config
 
-# НАСТРОЙКА МАРШРУТИЗАТОРА R1#
+**НАСТРОЙКА МАРШРУТИЗАТОРА R1**
 
-#  R1  Gi0/0/1#
+**R1  Gi0/0/1**
 
 > R1(config)#interface Gi0/0/1.100
 
@@ -285,7 +285,7 @@
 
 
 
-# R1  Gi0/0/0#
+**R1  Gi0/0/0**
 
 > R1(config)#interface Gi0/0/0
 
@@ -299,9 +299,9 @@
 
 #####################################################################################
 
-# НАСТРОЙКА МАРШРУТИЗАТОРА R2#
+**НАСТРОЙКА МАРШРУТИЗАТОРА R2**
 
-# R2  Gi0/0/0#
+**R2  Gi0/0/0**
 
 > R2(config)#interface Gi0/0/0
 
@@ -315,7 +315,7 @@
 
 > R2(config-if)#exit
 
-#  R2  Gi0/0/1#
+**R2  Gi0/0/1#**
 
 > R2(config)#interface Gi0/0/1
 
@@ -332,7 +332,7 @@
 ##########################################################################
 
 
- # НАСТРОЙКА МАРШРУТов по умолчанию#
+**НАСТРОЙКА МАРШРУТов по умолчанию**
 
 > R2(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.1
 
@@ -348,9 +348,9 @@
 ##########################################################################    
 
 
-# НАСТРОЙКА КОММУТАТОРА S2#
+**АСТРОЙКА КОММУТАТОРА S2**
 
-# S2 Vlan #
+**S2 Vlan**
 
 > S2(config)#interface vlan1
 
@@ -375,7 +375,7 @@
 
 ##########################################################################
 
-# S2    ОТКЛЮЧЕНИЕ НЕИСПОЛЬЗОВАННЫХ ПОРТОВ #
+**S2    ОТКЛЮЧЕНИЕ НЕИСПОЛЬЗОВАННЫХ ПОРТОВ**
 
 > S2(config)#S2(config)#interface range f0/1-4, f0/6-17, f0/19-24, g0/1-2
 
@@ -384,9 +384,9 @@
 > S2(config-if-range)#shutdown
 
 
-# НАСТРОЙКА КОММУТАТОРА S1#
+**НАСТРОЙКА КОММУТАТОРА S1**
 
-#  Vlan #
+**Vlan**
 
 > S1(config)#interface vlan 200
 
@@ -418,7 +418,7 @@
 
 > S1(config-vlan)#name Management
 
-# S1 shutdown port f0/5#
+**S1 shutdown port f0/5**
 
 > S1(config)#interface f0/5
 
@@ -428,7 +428,7 @@
 
 > S1(config-if)#switchport trunk allowed vlan 1,1000
 
-# S1 ОТКЛЮЧЕНИЕ НЕ ИСПОЛЬЗУЕМЫХ ПОРТОВ#
+**S1 ОТКЛЮЧЕНИЕ НЕ ИСПОЛЬЗУЕМЫХ ПОРТОВ**
 
 > S1(config)#interface range F0/2-4, F0/7-24, G0/1-2
 
@@ -496,7 +496,7 @@
 
 ##########################################################################
 
-# Настройте R1 с пулами DHCPv4 для двух поддерживаемых подсетей. #
+**Настройте R1 с пулами DHCPv4 для двух поддерживаемых подсетей.**
 
 
 > R1(config)#ip dhcp excluded-address 192.168.1.1 192.168.1.5
@@ -537,21 +537,21 @@
 
 R1(config)#end
 
-# Проверка конфигурации сервера DHCPv4 #
+**Проверка конфигурации сервера DHCPv4**
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/3.jpg "")
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/4.jpg "")
 
 
-# Попытка получить IP-адрес от DHCP на PC-A #
+**Попытка получить IP-адрес от DHCP на PC-A**
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/5.jpg "")
 
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/6.jpg "")
 
-# Настройка и проверка DHCP-ретрансляции на R2 # 
+**Настройка и проверка DHCP-ретрансляции на R2** 
 
 
 > R2(config)#interface gi0/0/1
@@ -562,7 +562,7 @@ R1(config)#end
 
 > R2#copy running-config startup-config
 
-# Попытка получить IP-адрес от DHCP на PC-B #
+**Попытка получить IP-адрес от DHCP на PC-B**
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_18/7.jpg "")
 
