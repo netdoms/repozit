@@ -92,3 +92,39 @@ R2(config)#end
 
 
 **Часть 2. Настройка и проверка базовой работы протокола OSPFv2 для одной области**
+
+R1(config)#router ospf 56
+
+R1(config-router)# router-id 1.1.1.1
+
+R1(config-router)#network 10.53.0.0 0.0.0.255 area 0
+
+    04:08:56: %OSPF-5-ADJCHG: Process 56, Nbr 2.2.2.2 on GigabitEthernet0/0/1 from LOADING to FULL, Loading Done
+
+
+R2(config)#router ospf 56
+
+R2(config-router)#router-id 2.2.2.2
+
+R2(config-router)#network 10.53.0.0 0.0.0.255 area 0
+
+    04:08:56: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from LOADING to FULL, Loading Done
+
+R2(config)#interface Loopback1
+R2(config-if)#ip ospf 56 area 0
+
+R2(config-if)#end
+
+
+R2#show ip ospf neighbor 
+
+    Neighbor ID     Pri   State           Dead Time   Address         Interface
+    1.1.1.1           1   FULL/DR         00:00:34    10.53.0.1       GigabitEthernet0/0/1
+
+Роутер R2 BDR.
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/2.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/3.jpg "")
+
+**Часть 3. Оптимизация и проверка конфигурации OSPFv2 для одной области**
