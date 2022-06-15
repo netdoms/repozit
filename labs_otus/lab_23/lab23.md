@@ -129,8 +129,36 @@ R2#show ip ospf neighbor
 
 **Часть 3. Оптимизация и проверка конфигурации OSPFv2 для одной области**
 
-R1(config)#interface G0/0/0
+R1(config)#interface G0/0/1
 
 R1(config-if)#ip ospf priority 50
 
 R1(config-if)#ip ospf hello-interval 30
+
+    07:41:18: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from FULL to DOWN, Neighbor Down: Dead timer expired
+
+    07:41:18: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from FULL to DOWN, Neighbor Down: Interface down or detached
+
+
+
+
+R2(config)#interface G0/0/1
+
+R2(config-if)#ip ospf priority 50
+
+R2(config-if)#ip ospf hello-interval 30
+
+R1(config)#ip route 0.0.0.0 0.0.0.0 loopback1
+
+    %Default route without gateway, if not a point-to-point interface, may impact performance
+
+R1(config)#router ospf 56
+
+R1(config-router)#default-information originate
+
+
+R2(config)#interface loopback1
+R2(config-if)#ip ospf network point-to-point
+R2(config-if)#end
+R2(config)#router ospf 56
+R2(config-router)#passive-interface loopback1
