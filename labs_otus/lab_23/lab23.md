@@ -128,3 +128,9 @@ R2#show ip ospf neighbor
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/3.jpg "")
 
 **Часть 3. Оптимизация и проверка конфигурации OSPFv2 для одной области**
+
+R1(config)#interface G0/0/0
+
+R1(config-if)#ip ospf priority 50
+
+R1(config-if)#ip ospf hello-interval 30
