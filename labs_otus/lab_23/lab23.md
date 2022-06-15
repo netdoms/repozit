@@ -1,7 +1,7 @@
 # Лабораторная работа N23
 # Настройка протокола OSPFv2 
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/1.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_23/1.jpg "")
 
 **Таблица адресации**
 
@@ -293,9 +293,9 @@
 
 Роутер R2 BDR.
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/2.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_23/2.jpg "")
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/3.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_23/3.jpg "")
 
 **Часть 3. Оптимизация и проверка конфигурации OSPFv2 для одной области**
 
@@ -375,9 +375,9 @@
 
     00:37:30: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from LOADING to FULL, Loading Done
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/4.jpg "") 
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_23/4.jpg "") 
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_20/5.jpg "")   
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_23/5.jpg "")   
 
 
 Почему стоимость OSPF для маршрута по умолчанию отличается от стоимости OSPF в R1 для сети 192.168.1.0/24?
