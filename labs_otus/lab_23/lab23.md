@@ -231,6 +231,8 @@
 
 > R1(config)#end
 
+**R2**
+
 > R2(config)# interface G0/0/1
 
 > R2(config-if)#ip address 10.53.0.2 255.255.255.0
