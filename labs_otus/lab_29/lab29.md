@@ -1,5 +1,5 @@
 # Лабораторная работа N26
-# Настройка и проверка расширенных списков контроля доступа
+# Настройка NAT для IPv4
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_29/1.jpg "")
 
