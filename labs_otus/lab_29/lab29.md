@@ -7,9 +7,9 @@
 
 |Устройство|Интерфейс|IP адрес     |Маска подсети  |
 |------|-----------|---------------|---------------|
-|R1    |G0/0/0      |209.165.200.230|255.255.255.248|
-|      |G0/0/1      |192.168.1.1    |255.255.255.0  |
-|R2    |G0/0/0      |209.165.200.225|255.255.255.248|
+|R1    |Gi0/0      |209.165.200.230|255.255.255.248|
+|      |Gi0/1      |192.168.1.1    |255.255.255.0  |
+|R2    |Gi0/0      |209.165.200.225|255.255.255.248|
 |      |lo1        |209.165.200.1  |255.255.255.0  |
 | S1   |VLAN 20    |192.168.1.11   |255.255.255.0  |
 | S2   |VLAN 20    |192.168.1.12   |255.255.255.0  |
@@ -30,7 +30,7 @@ n
 **R1**
 R1(config)#ip route 0.0.0.0 0.0.0.0 209.165.200.225
 
-R1(config)#interface g0/0/1
+R1(config)#interface gi0/1
 
 
 R1(config-if)#ip address 192.168.1.1 255.255.255.0
@@ -48,7 +48,7 @@ R1(config-if)#no shutdown
 **R2**
 
 
-R2(config)#interface g0/0/0
+R2(config)#interface gi0/0
 
 R2(config-if)#ip address 209.165.200.225 255.255.255.248
 
@@ -91,14 +91,14 @@ R1(config)#ip nat pool PUBLIC_ACCESS 209.165.200.226 209.165.200.228 netmask 255
 
 R1(config)#ip nat inside source list 1 pool PUBLIC_ACCESS
 
-R1(config)#interface g0/0/1
+R1(config)#interface gi0/1
 
 R1(config-if)#ip nat inside
 
 
 R1(config-if)#exit
 
-R1(config)#interface g0/0/0
+R1(config)#interface gi0/0
 
 R1(config-if)#ip nat outside
 
@@ -159,6 +159,7 @@ R1(config)#no ip nat inside source list 1 pool PUBLIC_ACCESS
 
 
 R1#clear ip nat translation *
+
 R1#clear ip nat statistics
 
 **Шаг 4. На R1 удалите команды преобразования nat pool.**
@@ -167,9 +168,8 @@ R1#conf t
 
 
 R1(config)#no ip nat inside source list 1 pool PUBLIC_ACCESS overload
+
 R1(config)#no ip nat pool PUBLIC_ACCESS
-
-
 
 R1(config)#ip nat inside source list 1 interface gi0/0 overload
 
@@ -184,6 +184,8 @@ S2#ping 209.165.200.1 repeat 999
 **Часть 4. Настройка и проверка статического NAT для IPv4.**
 
 R1#clear ip nat translation *
+
+
 R1#clear ip nat statistics
 
 
