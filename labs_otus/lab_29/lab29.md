@@ -31,6 +31,7 @@
 
 
 **R1**
+
 R1(config)#ip route 0.0.0.0 0.0.0.0 209.165.200.225
 
 R1(config)#interface gi0/1
@@ -41,7 +42,7 @@ R1(config-if)#ip address 192.168.1.1 255.255.255.0
 R1(config-if)#no shutdown
 
 
-R1(config)#interface g0/0/0
+R1(config)#interface gi0/0
 
 
 R1(config-if)#ip address 209.165.200.230 255.255.255.248
@@ -63,20 +64,26 @@ R2(config)#interface loopback1
 R2(config-if)#ip address 209.165.200.1 255.255.255.224
 
 **S1**
+
 S1(config)#interface vlan1
 
 
 S1(config-if)#ip address 192.168.1.11 255.255.255.0
+
+S1(config-if)no shutdown
 
 
 S1(config)#ip route 0.0.0.0 0.0.0.0 192.168.1.1
 
 
 **S2**
+
 S2(config)#interface vlan1
 
 
 S2(config-if)#ip address 192.168.1.12 255.255.255.0
+
+S2(config-if)no shutdown
 
 S2(config)#ip route 0.0.0.0 0.0.0.0 192.168.1.1
 
