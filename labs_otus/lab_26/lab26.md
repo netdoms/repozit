@@ -553,3 +553,90 @@
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_26/8.jpg "")
 
 
+> R1(config)#ip access-list extended DENY-ICMP
+
+> R1(config-ext-nacl)#remark denany icmp not Sales
+
+> R1(config-ext-nacl)# deny icmp 10.30.0.0 0.0.0.255 10.40.0.0 0.0.0.255
+
+> R1(config-ext-nacl)#permit ip any any
+
+> R1(config-ext-nacl)#exit
+
+> R1(config)#interface Gi0/1.30
+
+> R1(config-subif)#ip access-group DENY-ICMP in
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_26/9.jpg "")
+
+
+R1#show access-list
+
+    Extended IP access list DENY-ICMP
+        10 deny icmp 10.30.0.0 0.0.0.255 10.40.0.0 0.0.0.255 (4 matches)
+        20 permit ip any any (2 matches)
+
+
+> R1(config)#ip access-list extended DENY-SALES in
+
+> R1(config-ext-nacl)#remark denany ssh 1 icmp rules       
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255  10.20.0.0 0.0.0.255 eq 22
+
+> R1(config-ext-nacl)#deny icmp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255
+
+> R1(config-ext-nacl)#deny icmp 10.40.0.0 0.0.0.255  10.30.0.0 0.0.0.255
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255  10.20.0.0 0.0.0.255 eq 443
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255  10.20.0.0 0.0.0.255 eq 80
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255  10.30.0.0 0.0.0.255 eq 443
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 eq 80
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.40.0.0 0.0.0.255 eq 443
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255  10.40.0.0 0.0.0.255 eq 80
+
+> R1(config-ext-nacl)#permit ip any any
+
+> R1(config-ext-nacl)#exit
+
+> R1(config)#access-list extended DENY-SALES
+
+> R1(config-ext-nacl)#remark denany ssh 1 icmp rules
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255  10.20.0.0 0.0.0.255 eq 22
+
+> R1(config-ext-nacl)#deny icmp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255
+
+> R1(config-ext-nacl)#deny icmp 10.40.0.0 0.0.0.255  10.30.0.0 0.0.0.255
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255  10.20.0.0 0.0.0.255 eq 443
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255  10.20.0.0 0.0.0.255 eq 80
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255  10.30.0.0 0.0.0.255 eq 443
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 eq 80
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.40.0.0 0.0.0.255 eq 443
+
+> R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255  10.40.0.0 0.0.0.255 eq 80
+
+> R1(config-ext-nacl)#permit ip any any
+
+> R1(config-ext-nacl)#exit
+
+> R1(config)#interface Gi0/1.40
+
+> R1(config-subif)#ip access-group DENY-SALES in
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_26/10.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_26/11.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_26/12.jpg "")
+
+![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_26/13.jpg "")
