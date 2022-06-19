@@ -208,7 +208,7 @@ GigabitEthernet0/1-3
 
 
 
-**АСТРОЙКА КОММУТАТОРА S1**
+**НАСТРОЙКА КОММУТАТОРА S1**
 
 ![](https://github.com/netdoms/repozit/blob/main/labs_otus/lab_32/4.jpg "")
 
@@ -288,7 +288,7 @@ some Cisco devices have default chassis ID values of their serial numbers
 
     *13:13:29.761 UTC Sun Jun 19 2022
 
-clock set 16:17:00 01 june 2022
+> R1#clock set 16:17:00 01 june 2022
 
 > R1#ntp server 10.22.0.1
 
@@ -325,10 +325,9 @@ clock set 16:17:00 01 june 2022
 
 > S1#show ntp associations
 
-
-  address         ref clock       st   when   poll reach  delay  offset   disp
-*~10.22.0.1       127.127.1.1      4      8     64    77  1.304 820.824  0.974
- * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+    address         ref clock       st   when   poll reach  delay  offset   disp
+    ~10.22.0.1       127.127.1.1      4      8     64    77  1.304 820.824  0.974
+    sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
 
 > S1(config)#ntp clock-period 999999
 
