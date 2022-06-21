@@ -4,7 +4,7 @@
 
 Исходная схема
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/proekt/1.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/proekt/1.jpg "")
 
 Задачи 
 
@@ -17,7 +17,7 @@
 
 #Схема после расширения# 
 
-![](https://github.com/netdoms/repozit/blob/main/labs_otus/proekt/2.jpg "")
+![](https://github.com/netdoms/repozit/blob/main/proekt/2.jpg "")
 
 
 VPN поднимаем на Microtic или Cisco Asa через второго провайдера.
