@@ -31,4 +31,9 @@ VPN поднимаем на Microtic или Cisco Asa через второго 
 
 ![](https://github.com/netdoms/repozit/blob/main/proekt/3.jpg "")
 
+Вариант 4
+
+![](https://github.com/netdoms/repozit/blob/main/proekt/4.jpg "")
+
+
 
