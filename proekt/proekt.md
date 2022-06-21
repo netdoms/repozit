@@ -17,8 +17,18 @@
 
 #Схема после расширения# 
 
+Вариант 2
+
+
 ![](https://github.com/netdoms/repozit/blob/main/proekt/2.jpg "")
 
 
 VPN поднимаем на Microtic или Cisco Asa через второго провайдера.
+
+
+Вариант 3
+
+
+![](https://github.com/netdoms/repozit/blob/main/proekt/3.jpg "")
+
 
